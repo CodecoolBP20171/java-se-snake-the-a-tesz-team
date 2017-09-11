@@ -8,9 +8,11 @@ import com.codecool.snake.entities.Interactable;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 
+import java.util.concurrent.TimeUnit;
+
 public class SnakeHead extends GameEntity implements Animatable {
 
-    private static final float speed = 2;
+    private static float speed = 2;
     private static final float turnRate = 2;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int health;
@@ -64,6 +66,22 @@ public class SnakeHead extends GameEntity implements Animatable {
             SnakeBody newPart = new SnakeBody(pane, tail);
             tail = newPart;
         }
+    }
+
+    public void slowMotion() {
+        if (speed > 0) {
+            speed -= 0.5;
+            new java.util.Timer().schedule(
+                    new java.util.TimerTask() {
+                        @Override
+                        public void run() {
+                            speed += 0.5;
+                        }
+                    },
+                    5000
+            );
+        }
+
     }
 
     public void changeHealth(int diff) {
