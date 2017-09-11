@@ -14,6 +14,16 @@ public class SnakeHead extends GameEntity implements Animatable {
     private static final float turnRate = 2;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int health;
+    private static double coordX;
+    private static double coordY;
+
+    public static double getCoordX() {
+        return coordX;
+    }
+    public static double getCoordY() {
+        return coordY;
+    }
+
 
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
@@ -23,8 +33,9 @@ public class SnakeHead extends GameEntity implements Animatable {
         tail = this;
         setImage(Globals.snakeHead);
         pane.getChildren().add(this);
-
         addPart(4);
+        coordX=getX();
+        coordY=getY();
     }
 
     public void step() {
@@ -40,6 +51,8 @@ public class SnakeHead extends GameEntity implements Animatable {
         Point2D heading = Utils.directionToVector(dir, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
+        coordX=getX();
+        coordY=getY();
 
         // check if collided with an enemy or a powerup
         for (GameEntity entity : Globals.getGameObjects()) {
