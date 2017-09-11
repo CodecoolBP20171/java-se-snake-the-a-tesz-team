@@ -36,15 +36,15 @@ public class SnakeHead extends GameEntity implements Animatable {
             dir = dir + turnRate;
         }
         if (Globals.spaceDown) {
-            new Laser (pane, getX(), getY(), dir);
+            new Laser(pane, getX(), getY(), dir);
             Globals.spaceDown = false;
         }
         // set rotation and position
         setRotate(dir);
+
         Point2D heading = Utils.directionToVector(dir, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
-
         // check if collided with an enemy or a powerup
         for (GameEntity entity : Globals.getGameObjects()) {
             if (getBoundsInParent().intersects(entity.getBoundsInParent())) {
