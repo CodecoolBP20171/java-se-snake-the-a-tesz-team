@@ -69,7 +69,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
     public void changeSpeed(float speedChange) {
-        if (speed > 0.5) {
+        if (speed > 0.5 && speed < 5) {
             speed += speedChange;
             new java.util.Timer().schedule(
                     new java.util.TimerTask() {
