@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class SnakeHead extends GameEntity implements Animatable {
 
     private static float speed = 2;
-    private static final float turnRate = 2;
+    private static float turnRate = 2;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int health;
 
@@ -69,19 +69,34 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
     public void slowMotion() {
-        if (speed > 0) {
-            speed -= 0.5;
+        if (speed > 0.5) {
+            speed -= 0.3;
             new java.util.Timer().schedule(
                     new java.util.TimerTask() {
                         @Override
                         public void run() {
-                            speed += 0.5;
+                            speed += 0.3;
                         }
                     },
-                    5000
+                    7000
             );
         }
 
+    }
+
+    public void changeTurnRate() {
+        if (turnRate < 10   ) {
+            turnRate += 1;
+            new java.util.Timer().schedule(
+                    new java.util.TimerTask() {
+                        @Override
+                        public void run() {
+                            turnRate -= 1;
+                        }
+                    },
+                    7000
+            );
+        }
     }
 
     public void changeHealth(int diff) {
