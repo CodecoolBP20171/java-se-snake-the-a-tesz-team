@@ -2,7 +2,7 @@ package com.codecool.snake;
 
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.SimplePowerup;
-import com.codecool.snake.entities.powerups.SpeedPowerUp;
+import com.codecool.snake.entities.powerups.SlowMotionPowerUp;
 import com.codecool.snake.entities.powerups.TurnRatePowerUp;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
@@ -22,8 +22,8 @@ public class Game extends Pane {
         new SimplePowerup(this);
         new SimplePowerup(this);
         new SimplePowerup(this);
-        new SpeedPowerUp(this);
-        new SpeedPowerUp(this);
+        new SlowMotionPowerUp(this);
+        new SlowMotionPowerUp(this);
 
         new TurnRatePowerUp(this);
         new TurnRatePowerUp(this);

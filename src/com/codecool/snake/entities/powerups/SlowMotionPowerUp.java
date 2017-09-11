@@ -8,11 +8,11 @@ import javafx.scene.layout.Pane;
 
 import java.util.Random;
 
-public class SpeedPowerUp extends GameEntity implements Interactable {
+public class SlowMotionPowerUp extends GameEntity implements Interactable {
 
-    public SpeedPowerUp(Pane pane) {
+    public SlowMotionPowerUp(Pane pane) {
         super(pane);
-        setImage(Globals.speed);
+        setImage(Globals.slow);
         pane.getChildren().add(this);
 
         Random rnd = new Random();
@@ -22,7 +22,7 @@ public class SpeedPowerUp extends GameEntity implements Interactable {
 
     @Override
     public void apply(SnakeHead snakeHead) {
-        snakeHead.changeTurnRate();
+        snakeHead.changeSpeed((float) 0.5);
         destroy();
     }
 

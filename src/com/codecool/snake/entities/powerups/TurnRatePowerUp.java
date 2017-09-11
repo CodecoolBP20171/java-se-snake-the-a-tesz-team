@@ -22,7 +22,7 @@ public class TurnRatePowerUp extends GameEntity implements Interactable {
 
     @Override
     public void apply(SnakeHead snakeHead) {
-        snakeHead.slowMotion();
+        snakeHead.changeTurnRate();
         destroy();
     }
 

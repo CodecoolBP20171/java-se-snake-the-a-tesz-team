@@ -68,14 +68,14 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
     }
 
-    public void slowMotion() {
+    public void changeSpeed(float speedChange) {
         if (speed > 0.5) {
-            speed -= 0.3;
+            speed += speedChange;
             new java.util.Timer().schedule(
                     new java.util.TimerTask() {
                         @Override
                         public void run() {
-                            speed += 0.3;
+                            speed -= speedChange;
                         }
                     },
                     7000
@@ -84,14 +84,14 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     }
 
-    public void changeTurnRate() {
-        if (turnRate < 10   ) {
-            turnRate += 1;
+    public void changeTurnRate(float turnRateChange) {
+        if (turnRate < 5   ) {
+            turnRate += turnRateChange;
             new java.util.Timer().schedule(
                     new java.util.TimerTask() {
                         @Override
                         public void run() {
-                            turnRate -= 1;
+                            turnRate -= turnRateChange;
                         }
                     },
                     7000
