@@ -11,7 +11,6 @@ import javafx.scene.layout.Pane;
 public class Laser extends GameEntity implements Animatable {
 
     private Point2D heading;
-    private int speed = 15;
     private double direction;
 
     public Laser(Pane pane, double xc, double yc, double direction) {
@@ -20,8 +19,8 @@ public class Laser extends GameEntity implements Animatable {
         setY(yc);
         this.direction = direction;
         setImage(Globals.redLaser);
-        heading = Utils.directionToVector(this.direction, this.speed);
-        System.out.println("Direction: " + direction);
+        int speed = 15;
+        heading = Utils.directionToVector(this.direction, speed);
         setRotate(direction);
         pane.getChildren().add(this);
     }
@@ -33,6 +32,16 @@ public class Laser extends GameEntity implements Animatable {
         }
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
+
+        for (GameEntity entity : Globals.getGameObjects()){
+            if (getBoundsInParent().intersects(entity.getBoundsInParent())) {
+                if (entity instanceof Interactable) {
+                    Interactable interactable = (Interactable) entity;
+                    interactable.shoot(this);
+                    destroy();
+                }
+            }
+        }
     }
 
 
