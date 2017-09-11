@@ -35,6 +35,10 @@ public class SnakeHead extends GameEntity implements Animatable {
         if (Globals.rightKeyDown) {
             dir = dir + turnRate;
         }
+        if (Globals.spaceDown) {
+            new Laser (pane, getX(), getY(), dir);
+            Globals.spaceDown = false;
+        }
         // set rotation and position
         setRotate(dir);
         Point2D heading = Utils.directionToVector(dir, speed);

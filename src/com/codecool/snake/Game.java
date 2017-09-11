@@ -11,7 +11,6 @@ public class Game extends Pane {
 
     public Game() {
         new SnakeHead(this, 500, 500);
-        new Laser(this, 512, 500);
         new SimpleEnemy(this);
         new SimpleEnemy(this);
         new SimpleEnemy(this);
