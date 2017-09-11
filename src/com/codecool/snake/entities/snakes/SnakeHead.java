@@ -15,16 +15,21 @@ public class SnakeHead extends GameEntity implements Animatable {
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int health;
 
+
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
+        health = 100;
+        if (health == 100) {
+            Globals.healthCounter.setText("Health: " + health);
+        }
         setX(xc);
         setY(yc);
-        health = 100;
         tail = this;
         setImage(Globals.snakeHead);
         pane.getChildren().add(this);
 
         addPart(4);
+
     }
 
     public void step() {
@@ -74,5 +79,6 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public void changeHealth(int diff) {
         health += diff;
+        Globals.healthCounter.setText("Health: " + health);
     }
 }

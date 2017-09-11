@@ -11,6 +11,7 @@ public class Game extends Pane {
 
     public Game() {
         new SnakeHead(this, 500, 500);
+
         new SimpleEnemy(this);
         new SimpleEnemy(this);
         new SimpleEnemy(this);
@@ -24,6 +25,7 @@ public class Game extends Pane {
     }
 
     public void start() {
+
         Scene scene = getScene();
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
