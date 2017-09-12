@@ -94,5 +94,10 @@ public class SnakeHead extends GameEntity implements Animatable {
     public void changeHealth(int diff) {
         health += diff;
         Globals.healthCounter.setText("Health: " + health);
+        if (health <= 80 && health > 40 ) {
+            setImage(Globals.unhealthyHead);
+        } else if (health <= 40) {
+            setImage(Globals.almostDestroyedHead);
+        }
     }
 }
