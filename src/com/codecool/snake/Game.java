@@ -58,11 +58,7 @@ public class Game extends Pane {
         new SnakeTracker(this);
         new Vary(this);
         new SimpleEnemy(this);
-        String musicFile = "resources/Angry Birds Theme Song.mp3";
 
-        Media sound = new Media(new File(musicFile).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.play();
         randomPowerSpawn();
         generatePowerUp();
     }
@@ -103,8 +99,6 @@ public class Game extends Pane {
 
     public Game getThis() {
         return this;
-
-
     }
 
     public void start() {

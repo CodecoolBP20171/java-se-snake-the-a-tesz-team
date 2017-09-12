@@ -5,10 +5,12 @@ import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import javafx.scene.control.Label;
+import javafx.scene.media.Media;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -39,7 +41,8 @@ public class Globals {
     //.. put here the other images you want to use
 
     public static Image redLaser = new Image("red_laser.png");
-
+    public static Media sound = new Media(new File("resources/Angry Birds Theme Song.mp3").toURI().toString());
+    public static Media laserSound = new Media(new File("resources/laser_sound.mp3").toURI().toString());
     public static Label healthCounter = new Label();
 
     public static boolean leftKeyDown;
@@ -49,6 +52,7 @@ public class Globals {
     public static List<GameEntity> newGameObjects; // Holds game objects crated in this frame.
     public static List<GameEntity> oldGameObjects; // Holds game objects that will be destroyed this frame.
     public static GameLoop gameLoop;
+
 
     static {
         gameObjects = new LinkedList<>();

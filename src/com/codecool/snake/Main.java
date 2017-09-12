@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -42,7 +43,7 @@ public class Main extends Application {
         javafx.scene.text.Text info = new Text();
         info.setEffect(ds);
         info.setCache(true);
-        info.setX(Globals.WINDOW_WIDTH*0.3);
+        info.setX(Globals.WINDOW_WIDTH * 0.3);
         info.setY(40);
         info.setFill(Color.BLACK);
         info.setText("Press 'P' to Pause the game or 'R' to Restart");
@@ -56,6 +57,9 @@ public class Main extends Application {
                     gameScene.getStylesheets().add("css/snake.css");
                     primaryStage.setScene(gameScene);
                     Globals.window = primaryStage;
+                    MediaPlayer mediaPlayer = new MediaPlayer(Globals.sound);
+                    mediaPlayer.play();
+
                     game.start();
                 }
         );
