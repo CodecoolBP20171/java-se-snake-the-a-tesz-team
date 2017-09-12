@@ -1,52 +1,62 @@
 package com.codecool.snake;
 
-import com.codecool.snake.entities.enemies.SimpleEnemy;
-import com.codecool.snake.entities.powerups.SimplePowerup;
-import com.codecool.snake.entities.powerups.SlowMotionPowerUp;
-import com.codecool.snake.entities.powerups.SpeedingPowerUp;
-import com.codecool.snake.entities.powerups.TurnRatePowerUp;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import sun.java2d.pipe.SpanShapeRenderer;
 
-import java.util.ArrayList;
+import javax.swing.*;
+import java.awt.event.ActionListener;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 public class Game extends Pane {
 
     public static int numOfPowerUps;
+    private static boolean ableToSpawn = false;
+    public static Game thisGame;
+    private static int powerUpDelay;
 
     public Game() {
         new SnakeHead(this, 500, 500);
-
-        generatePowerUp(this);
-
-
+        thisGame = this;
+        randomPowerSpawn();
+        generatePowerUp();
     }
 
-    public void generatePowerUp(Game game) {
-        while (numOfPowerUps <= 5) {
-            Random rnd = new Random();
-            int powerUpRandom = rnd.nextInt(4 - 1) + 1;
-            if (powerUpRandom == 1) {
-                new SlowMotionPowerUp(game);
-            } else if (powerUpRandom == 2) {
-                new SimplePowerup(game);
-            } else if(powerUpRandom == 3) {
-                new SpeedingPowerUp(game);
-            } else if (powerUpRandom == 4) {
-                new TurnRatePowerUp(game);
-            }
-            numOfPowerUps++;
-        }
+    public static void generatePowerUp() {
+        ActionListener spawnPowerUp = evt -> ableToSpawn = true;
+        ActionListener randomDelay = evt -> randomPowerSpawn();
+
+        Timer timer = new Timer(powerUpDelay, spawnPowerUp);
+        Timer delayTimer = new Timer(powerUpDelay, randomDelay);
+
+        delayTimer.setRepeats(true);
+        delayTimer.start();
+
+        timer.setRepeats(true);
+        timer.start();
     }
 
+    public static int randomizePowerUp() {
+        Random powerUpRandomizer = new Random();
+        return powerUpRandomizer.nextInt(4 - 1 + 1) +1;
+    }
 
+    public static boolean getAbleToSpawn(){
+        return ableToSpawn;
+    }
+    public static void setAbleToSpawn(boolean value){
+        ableToSpawn=value;
+    }
+
+    public static void randomPowerSpawn () {
+        Random randomGenerator = new Random();
+        powerUpDelay = randomGenerator.nextInt(10000 - 2000 +1) + 2000;
+        System.out.println(powerUpDelay);
+    }
+
+    public Game getThis() {
+        return this;
+    }
 
     public void start() {
         Scene scene = getScene();

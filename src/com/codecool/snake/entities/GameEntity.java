@@ -1,5 +1,6 @@
 package com.codecool.snake.entities;
 
+import com.codecool.snake.Game;
 import com.codecool.snake.Globals;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -18,6 +19,7 @@ public abstract class GameEntity extends ImageView {
     public void destroy() {
         if (getParent() != null) {
             pane.getChildren().remove(this);
+            Game.numOfPowerUps--;
         }
         Globals.removeGameObject(this);
     }
