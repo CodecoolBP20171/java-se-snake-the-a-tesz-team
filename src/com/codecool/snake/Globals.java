@@ -20,6 +20,8 @@ public class Globals {
 
     public static Stage window;
     public static Scene startScene;
+    public static boolean paused;
+    public static boolean gameOver;
 
     public static Image snakeHead = new Image("snake_head.png");
     public static Image unhealthyHead = new Image("unhealthy_head.png");
