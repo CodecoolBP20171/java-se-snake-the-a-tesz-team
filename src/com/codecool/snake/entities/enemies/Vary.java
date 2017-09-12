@@ -1,11 +1,10 @@
 package com.codecool.snake.entities.enemies;
 
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
-import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
+import com.codecool.snake.entities.Animatable;
+import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
-import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.Laser;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.geometry.Point2D;
@@ -14,16 +13,19 @@ import javafx.scene.layout.Pane;
 import java.util.Random;
 
 // a simple enemy TODO make better ones.
-public class SimpleEnemy extends GameEntity implements Animatable, Interactable {
+public class Vary extends GameEntity implements Animatable, Interactable {
 
     private Point2D heading;
     private static final int damage = 10;
+    private double direction = 360;
+    private int speed = 1;
+    private int frameCounter = 0;
+    private String turnDirection;
 
-    public SimpleEnemy(Pane pane) {
+    public Vary(Pane pane) {
         super(pane);
         setImage(Globals.simpleEnemy);
         pane.getChildren().add(this);
-        int speed = 1;
         Random rnd = new Random();
         double SnakeHeadX=SnakeHead.getCoordX();
         double SnakeHeadY=SnakeHead.getCoordY();
@@ -36,7 +38,6 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
         }
         setX(spawnPositionX);
         setY(spawnPositionY);
-        double direction = rnd.nextDouble() * 360;
         setRotate(direction);
         heading = Utils.directionToVector(direction, speed);
 
@@ -52,10 +53,37 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
     @Override
     public void step() {
         if (isOutOfBounds()) {
-            destroy();
+            direction=+90;
         }
+
+        Random rnd = new Random();
+        if(frameCounter==60){
+            frameCounter=0;
+            if(rnd.nextInt(100-1+1)<50){
+                turnDirection="left";
+            }else{
+                turnDirection="right";
+            }
+        }
+        if(turnDirection=="left") {
+            double random = rnd.nextDouble();
+            double start = 0;
+            double end = 2;
+            double result = start + (random * (end - start));
+            direction=direction+result;
+        }else{
+            double start = -2;
+            double end = 0;
+            double random = rnd.nextDouble();
+            double result = start + (random * (end - start));
+            direction=direction+result;
+        }
+        setRotate(direction);
+        heading = Utils.directionToVector(direction, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
+        frameCounter++;
+
 
     }
 
@@ -68,7 +96,7 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
     @Override
     public void shoot(Laser laser) {
         destroy();
-        new SimpleEnemy(pane);
+        new Vary(pane);
     }
 
     @Override
