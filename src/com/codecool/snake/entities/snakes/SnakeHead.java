@@ -12,6 +12,8 @@ import com.codecool.snake.entities.powerups.SpeedingPowerUp;
 import com.codecool.snake.entities.powerups.TurnRatePowerUp;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
@@ -63,6 +65,8 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
         if (Globals.spaceDown) {
             new Laser(pane, getX(), getY(), dir);
+            MediaPlayer laserEffect = new MediaPlayer(Globals.laserSound);
+            laserEffect.play();
             Globals.spaceDown = false;
         }
         // set rotation and position
