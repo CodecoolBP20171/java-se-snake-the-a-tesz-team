@@ -3,6 +3,7 @@ package com.codecool.snake.entities.powerups;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.snakes.Laser;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.layout.Pane;
 
@@ -25,6 +26,11 @@ public class SlowMotionPowerUp extends GameEntity implements Interactable {
         snakeHead.changeSpeed((float) -0.5);
 
         destroy();
+    }
+
+    @Override
+    public void shoot(Laser laser) {
+        System.out.println("shoot");
     }
 
     @Override

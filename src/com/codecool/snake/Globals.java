@@ -26,7 +26,7 @@ public class Globals {
     public static Image almostDestroyedHead = new Image("almost_destroyed.png");
     public static Image snakeBody = new Image("snake_body.png");
     public static Image simpleEnemy = new Image("simple_enemy.png");
-    public static Image powerupBerry = new Image("powerup_berry.png");
+    //public static Image powerupBerry = new Image("powerup_berry.png");
     public static Image slow = new Image("slow.png");
     public static Image turn = new Image("turn.png");
     public static Image fast = new Image("fast.png");
