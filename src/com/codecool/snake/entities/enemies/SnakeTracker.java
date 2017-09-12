@@ -22,7 +22,7 @@ public class SnakeTracker extends GameEntity implements Animatable, Interactable
 
     public SnakeTracker(Pane pane) {
         super(pane);
-        setImage(Globals.simpleEnemy);
+        setImage(Globals.snakeTracker);
         pane.getChildren().add(this);
         int speed = 1;
 

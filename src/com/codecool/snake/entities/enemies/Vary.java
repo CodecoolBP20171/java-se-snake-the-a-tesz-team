@@ -24,7 +24,7 @@ public class Vary extends GameEntity implements Animatable, Interactable {
 
     public Vary(Pane pane) {
         super(pane);
-        setImage(Globals.simpleEnemy);
+        setImage(Globals.vary);
         pane.getChildren().add(this);
         Random rnd = new Random();
         double SnakeHeadX=SnakeHead.getCoordX();

@@ -33,6 +33,31 @@ public class Game extends Pane {
     public Game() {
         new SnakeHead(this, 500, 500);
         thisGame = this;
+
+        new SnakeTracker(this);
+        new Vary(this);
+        new SimpleEnemy(this);
+        new SnakeTracker(this);
+        new Vary(this);
+        new SimpleEnemy(this);
+        new SnakeTracker(this);
+        new Vary(this);
+        new SimpleEnemy(this);
+        new SnakeTracker(this);
+        new Vary(this);
+        new SimpleEnemy(this);
+        new SnakeTracker(this);
+        new Vary(this);
+        new SimpleEnemy(this);
+        new SnakeTracker(this);
+        new Vary(this);
+        new SimpleEnemy(this);
+        new SnakeTracker(this);
+        new Vary(this);
+        new SimpleEnemy(this);
+        new SnakeTracker(this);
+        new Vary(this);
+        new SimpleEnemy(this);
         String musicFile = "resources/Angry Birds Theme Song.mp3";
 
         Media sound = new Media(new File(musicFile).toURI().toString());
