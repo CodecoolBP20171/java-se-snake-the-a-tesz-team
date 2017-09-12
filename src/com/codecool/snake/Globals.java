@@ -25,6 +25,7 @@ public class Globals {
     public static boolean paused;
     public static boolean gameOver;
 
+    //images
     public static Image snakeHead = new Image("snake_head.png");
     public static Image unhealthyHead = new Image("unhealthy_head.png");
     public static Image almostDestroyedHead = new Image("almost_destroyed.png");
@@ -32,19 +33,20 @@ public class Globals {
     public static Image simpleEnemy = new Image("simple_enemy.png");
     public static Image snakeTracker = new Image("snake_tracker.png");
     public static Image vary = new Image("vary.png");
-    //public static Image powerupBerry = new Image("powerup_berry.png");
     public static Image slow = new Image("slow.png");
     public static Image turn = new Image("turn.png");
     public static Image fast = new Image("fast.png");
     public static Image powerupBerry = new Image("powerup_egg.png");
-
-    //.. put here the other images you want to use
-
     public static Image redLaser = new Image("red_laser.png");
+
+    //sound
     public static Media sound = new Media(new File("resources/Angry Birds Theme Song.mp3").toURI().toString());
     public static Media laserSound = new Media(new File("resources/laser_sound.mp3").toURI().toString());
+
+    //counter
     public static Label healthCounter = new Label();
 
+    
     public static boolean leftKeyDown;
     public static boolean rightKeyDown;
     public static boolean spaceDown;

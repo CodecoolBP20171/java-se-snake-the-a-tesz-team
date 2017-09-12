@@ -8,11 +8,6 @@ import com.codecool.snake.entities.enemies.Vary;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-
-import java.io.File;
-
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -33,27 +28,6 @@ public class Game extends Pane {
         new SnakeHead(this, 500, 500);
         thisGame = this;
 
-        new SnakeTracker(this);
-        new Vary(this);
-        new SimpleEnemy(this);
-        new SnakeTracker(this);
-        new Vary(this);
-        new SimpleEnemy(this);
-        new SnakeTracker(this);
-        new Vary(this);
-        new SimpleEnemy(this);
-        new SnakeTracker(this);
-        new Vary(this);
-        new SimpleEnemy(this);
-        new SnakeTracker(this);
-        new Vary(this);
-        new SimpleEnemy(this);
-        new SnakeTracker(this);
-        new Vary(this);
-        new SimpleEnemy(this);
-        new SnakeTracker(this);
-        new Vary(this);
-        new SimpleEnemy(this);
         new SnakeTracker(this);
         new Vary(this);
         new SimpleEnemy(this);
@@ -95,7 +69,6 @@ public class Game extends Pane {
         powerUpDelay = randomGenerator.nextInt(10000 - 2000 +1) + 2000;
         System.out.println(powerUpDelay);
     }
-
 
     public Game getThis() {
         return this;

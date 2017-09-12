@@ -58,8 +58,8 @@ public class Main extends Application {
                     primaryStage.setScene(gameScene);
                     Globals.window = primaryStage;
                     MediaPlayer mediaPlayer = new MediaPlayer(Globals.sound);
+                    mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); //music plays until game ends
                     mediaPlayer.play();
-
                     game.start();
                 }
         );
@@ -68,7 +68,6 @@ public class Main extends Application {
         menuScene.getStylesheets().add("css/menu.css");
 
         Globals.startScene = new Scene(menuScene, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
-
         primaryStage.setScene(Globals.startScene);
         primaryStage.show();
     }
