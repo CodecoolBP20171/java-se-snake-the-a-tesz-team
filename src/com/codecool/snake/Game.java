@@ -5,19 +5,14 @@ import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.enemies.SnakeTracker;
 import com.codecool.snake.entities.enemies.Vary;
-import com.codecool.snake.entities.powerups.SimplePowerup;
-import com.codecool.snake.entities.snakes.Laser;
 import com.codecool.snake.entities.snakes.SnakeHead;
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.stage.Stage;
 
 import java.io.File;
 
-import static com.codecool.snake.Main.window;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -31,6 +26,10 @@ public class Game extends Pane {
     private static int powerUpDelay;
 
     public Game() {
+        newGame();
+    }
+
+    public void newGame() {
         new SnakeHead(this, 500, 500);
         thisGame = this;
 
@@ -65,6 +64,7 @@ public class Game extends Pane {
         mediaPlayer.play();
         randomPowerSpawn();
         generatePowerUp();
+        Globals.gameOver = false;
     }
 
     public static void generatePowerUp() {
@@ -132,12 +132,9 @@ public class Game extends Pane {
     }
 
     private void restart() {
-        Globals.gameLoop.stop();
         for (GameEntity gameEntity : Globals.gameObjects) {
             gameEntity.destroy();
         }
-        window.close();
-        Platform.runLater(() -> new Main().start(new Stage()));
-        Globals.gameLoop.start();
+        newGame();
     }
 }
