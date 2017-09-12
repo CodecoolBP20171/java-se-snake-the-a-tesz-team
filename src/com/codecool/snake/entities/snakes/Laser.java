@@ -33,7 +33,7 @@ public class Laser extends GameEntity implements Animatable {
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
 
-        for (GameEntity entity : Globals.getGameObjects()){
+        for (GameEntity entity : Globals.getGameObjects()) {
             if (getBoundsInParent().intersects(entity.getBoundsInParent())) {
                 if (entity instanceof Interactable) {
                     Interactable interactable = (Interactable) entity;

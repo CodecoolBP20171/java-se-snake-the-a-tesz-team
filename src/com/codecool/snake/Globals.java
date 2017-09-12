@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import javafx.scene.control.Label;
 
 // class for holding all static stuff
 public class Globals {
@@ -21,6 +22,8 @@ public class Globals {
     //.. put here the other images you want to use
 
     public static Image redLaser = new Image("red_laser.png");
+
+    public static Label healthCounter = new Label();
 
     public static boolean leftKeyDown;
     public static boolean rightKeyDown;
