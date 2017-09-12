@@ -18,7 +18,7 @@ public class Main extends Application {
         launch(args);
     }
 
-    public Stage window;
+    public static Stage window;
 
     @Override
     public void start(Stage primaryStage) {
@@ -51,6 +51,7 @@ public class Main extends Application {
 
         startButton.setOnAction(e -> {
                     Game game = new Game();
+                    game.getChildren().add(Globals.healthCounter);
                     Scene gameScene = new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
                     gameScene.getStylesheets().add("css/snake.css");
                     primaryStage.setScene(gameScene);
