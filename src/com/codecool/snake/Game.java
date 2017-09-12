@@ -3,6 +3,8 @@ package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
+import com.codecool.snake.entities.enemies.SnakeTracker;
+import com.codecool.snake.entities.enemies.Vary;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.Laser;
 import com.codecool.snake.entities.snakes.SnakeHead;
@@ -59,6 +61,7 @@ public class Game extends Pane {
         return powerUpRandomizer.nextInt(4 - 1 + 1) +1;
     }
 
+
     public static boolean getAbleToSpawn(){
         return ableToSpawn;
     }
@@ -75,6 +78,7 @@ public class Game extends Pane {
 
     public Game getThis() {
         return this;
+
 
     }
 

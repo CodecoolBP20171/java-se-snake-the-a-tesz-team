@@ -21,12 +21,16 @@ public class SnakeHead extends GameEntity implements Animatable {
     private int health;
     private static double coordX;
     private static double coordY;
+    private static Point2D SnakeHeadHeading;
 
     public static double getCoordX() {
         return coordX;
     }
     public static double getCoordY() {
         return coordY;
+    }
+    public static Point2D getHeading(){
+        return SnakeHeadHeading;
     }
 
 
@@ -69,6 +73,8 @@ public class SnakeHead extends GameEntity implements Animatable {
         setY(getY() + heading.getY());
         coordX=getX();
         coordY=getY();
+        SnakeHeadHeading=heading;
+
 
 
         // check if collided with an enemy or a powerup
