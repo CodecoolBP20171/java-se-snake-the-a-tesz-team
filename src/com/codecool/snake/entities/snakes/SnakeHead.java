@@ -172,13 +172,13 @@ public class SnakeHead extends GameEntity implements Animatable {
     private void changeAmmo(double dir) {
         Laser shoot = new Laser(pane, getX(), getY(), dir);
         shootCounter--;
-        MediaPlayer laserEffect = new MediaPlayer(Globals.laserSound);
-        laserEffect.play();
+        //MediaPlayer laserEffect = new MediaPlayer(Globals.laserSound);
+        //laserEffect.play();
         Globals.ammoCounter.setText("Ammo: " + shootCounter);
 
         if (shootCounter < 0) {
             shoot.destroy();
-            laserEffect.stop();
+            //laserEffect.stop();
             Globals.ammoCounter.setText("Ammo: 0");
         }
         Globals.spaceDown = false;
