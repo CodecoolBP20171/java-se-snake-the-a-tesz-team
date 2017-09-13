@@ -12,7 +12,6 @@ import javafx.scene.layout.Pane;
 
 import java.util.Random;
 
-// a simple enemy TODO make better ones.
 public class Vary extends GameEntity implements Animatable, Interactable {
 
     private Point2D heading;
@@ -40,7 +39,6 @@ public class Vary extends GameEntity implements Animatable, Interactable {
         setY(spawnPositionY);
         setRotate(direction);
         heading = Utils.directionToVector(direction, speed);
-
     }
 
     /**Checks if enemy spawn coordinates collide, or within the safe radius of the snake's head*/
@@ -48,7 +46,6 @@ public class Vary extends GameEntity implements Animatable, Interactable {
         int safeRadius = 100;
         return (spawnPositionX>SnakeHeadX-safeRadius && spawnPositionX<SnakeHeadX+safeRadius) && (spawnPositionY>SnakeHeadY-safeRadius && spawnPositionY<SnakeHeadY+safeRadius);
         }
-
 
     @Override
     public void step() {
@@ -59,7 +56,7 @@ public class Vary extends GameEntity implements Animatable, Interactable {
         Random rnd = new Random();
         if(frameCounter==60){
             frameCounter=0;
-            if(rnd.nextInt(100-1+1)<50){
+            if(rnd.nextInt(100)<50){
                 turnDirection="left";
             }else{
                 turnDirection="right";
@@ -71,7 +68,7 @@ public class Vary extends GameEntity implements Animatable, Interactable {
             double end = 2;
             double result = start + (random * (end - start));
             direction=direction+result;
-        }else{
+        }else if(turnDirection=="right"){
             double start = -2;
             double end = 0;
             double random = rnd.nextDouble();
@@ -101,6 +98,5 @@ public class Vary extends GameEntity implements Animatable, Interactable {
 
     @Override
     public String getMessage() {
-        return "10 damage";
-    }
-}
+        return damage + " damage";
+    }}
