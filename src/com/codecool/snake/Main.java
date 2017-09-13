@@ -52,14 +52,15 @@ public class Main extends Application {
 
         startButton.setOnAction(e -> {
                     Game game = new Game();
-                    game.getChildren().add(Globals.healthCounter);
+                    Globals.ammoCounter.setTranslateY(50);
+                    game.getChildren().addAll(Globals.healthCounter, Globals.ammoCounter);
                     Scene gameScene = new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
                     gameScene.getStylesheets().add("css/snake.css");
                     primaryStage.setScene(gameScene);
                     Globals.window = primaryStage;
                     MediaPlayer mediaPlayer = new MediaPlayer(Globals.sound);
+                    mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
                     mediaPlayer.play();
-
                     game.start();
                 }
         );

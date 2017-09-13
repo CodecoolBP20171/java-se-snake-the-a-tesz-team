@@ -93,7 +93,6 @@ public class Game extends Pane {
     public static void randomPowerSpawn () {
         Random randomGenerator = new Random();
         powerUpDelay = randomGenerator.nextInt(10000 - 2000 +1) + 2000;
-        System.out.println(powerUpDelay);
     }
 
 

@@ -24,21 +24,34 @@ public class SnakeHead extends GameEntity implements Animatable {
     private static double coordX;
     private static double coordY;
     private static Point2D SnakeHeadHeading;
+    private static int shootCounter = 5;
 
     public static double getCoordX() {
         return coordX;
     }
+
     public static double getCoordY() {
         return coordY;
     }
-    public static Point2D getHeading(){
+
+    public int getShootCounter() {
+        return shootCounter;
+    }
+
+    public void setShootCounter(int shootCounter) {
+        this.shootCounter = shootCounter;
+    }
+
+    public static Point2D getHeading() {
         return SnakeHeadHeading;
     }
 
 
-
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
+        if (shootCounter == 5) {
+            Globals.ammoCounter.setText("Ammo: " + shootCounter);
+        }
         health = 100;
         if (health == 100) {
             Globals.healthCounter.setText("Health: " + health);
@@ -50,12 +63,13 @@ public class SnakeHead extends GameEntity implements Animatable {
         pane.getChildren().add(this);
         addPart(4);
 
-        coordX=getX();
-        coordY=getY();
+        coordX = getX();
+        coordY = getY();
 
     }
 
     public void step() {
+
         double dir = getRotate();
         if (Globals.leftKeyDown) {
             dir = dir - turnRate;
@@ -64,10 +78,7 @@ public class SnakeHead extends GameEntity implements Animatable {
             dir = dir + turnRate;
         }
         if (Globals.spaceDown) {
-            new Laser(pane, getX(), getY(), dir);
-            MediaPlayer laserEffect = new MediaPlayer(Globals.laserSound);
-            laserEffect.play();
-            Globals.spaceDown = false;
+            changeAmmo(dir);
         }
         // set rotation and position
         setRotate(dir);
@@ -75,10 +86,9 @@ public class SnakeHead extends GameEntity implements Animatable {
         Point2D heading = Utils.directionToVector(dir, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
-        coordX=getX();
-        coordY=getY();
-        SnakeHeadHeading=heading;
-
+        coordX = getX();
+        coordY = getY();
+        SnakeHeadHeading = heading;
 
 
         // check if collided with an enemy or a powerup
@@ -91,8 +101,8 @@ public class SnakeHead extends GameEntity implements Animatable {
                 }
             }
         }
-        if(Game.getAbleToSpawn() && Game.numOfPowerUps <= 5){
-            switch(Game.randomizePowerUp()) {
+        if (Game.getAbleToSpawn() && Game.numOfPowerUps <= 5) {
+            switch (Game.randomizePowerUp()) {
                 case 1:
                     new SimplePowerup(Game.thisGame);
                     break;
@@ -145,7 +155,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
     public void changeTurnRate(float turnRateChange) {
-        if (turnRate < 5   ) {
+        if (turnRate < 5) {
             turnRate += turnRateChange;
             new java.util.Timer().schedule(
                     new java.util.TimerTask() {
@@ -159,10 +169,25 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
     }
 
+    private void changeAmmo(double dir) {
+        Laser shoot = new Laser(pane, getX(), getY(), dir);
+        shootCounter--;
+        MediaPlayer laserEffect = new MediaPlayer(Globals.laserSound);
+        laserEffect.play();
+        Globals.ammoCounter.setText("Ammo: " + shootCounter);
+
+        if (shootCounter < 0) {
+            shoot.destroy();
+            laserEffect.stop();
+            Globals.ammoCounter.setText("Ammo: 0");
+        }
+        Globals.spaceDown = false;
+    }
+
     public void changeHealth(int diff) {
         health += diff;
         Globals.healthCounter.setText("Health: " + health);
-        if (health <= 80 && health > 40 ) {
+        if (health <= 80 && health > 40) {
             setImage(Globals.unhealthyHead);
         } else if (health <= 40) {
             setImage(Globals.almostDestroyedHead);
