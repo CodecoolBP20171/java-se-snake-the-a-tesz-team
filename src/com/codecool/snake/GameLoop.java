@@ -22,5 +22,10 @@ public class GameLoop extends AnimationTimer {
             Globals.gameObjects.removeAll(Globals.oldGameObjects);
             Globals.oldGameObjects.clear();
         }
+
+        if(Globals.gameOver) {
+            Globals.gameLoop.stop();
+            Globals.window.setScene(Globals.startScene);
+        }
     }
 }
