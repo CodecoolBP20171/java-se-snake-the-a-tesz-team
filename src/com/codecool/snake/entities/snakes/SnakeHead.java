@@ -23,7 +23,6 @@ public class SnakeHead extends GameEntity implements Animatable {
     private int health;
     private static double coordX;
     private static double coordY;
-    private static Point2D SnakeHeadHeading;
 
     public static double getCoordX() {
         return coordX;
@@ -31,18 +30,13 @@ public class SnakeHead extends GameEntity implements Animatable {
     public static double getCoordY() {
         return coordY;
     }
-    public static Point2D getHeading(){
-        return SnakeHeadHeading;
-    }
 
 
 
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
         health = 100;
-        if (health == 100) {
-            Globals.healthCounter.setText("Health: " + health);
-        }
+        Globals.healthCounter.setText("Health: " + health);
         setX(xc);
         setY(yc);
         tail = this;
@@ -77,7 +71,6 @@ public class SnakeHead extends GameEntity implements Animatable {
         setY(getY() + heading.getY());
         coordX=getX();
         coordY=getY();
-        SnakeHeadHeading=heading;
 
 
 
