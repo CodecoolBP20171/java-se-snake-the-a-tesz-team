@@ -2,6 +2,7 @@ package com.codecool.snake;
 
 
 import com.codecool.snake.entities.GameEntity;
+import com.codecool.snake.entities.enemies.JarJar;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.enemies.SnakeTracker;
 import com.codecool.snake.entities.enemies.Vary;
@@ -31,6 +32,7 @@ public class Game extends Pane {
         new SnakeTracker(this);
         new Vary(this);
         new SimpleEnemy(this);
+        new JarJar(this);
 
         randomPowerSpawn();
         generatePowerUp();

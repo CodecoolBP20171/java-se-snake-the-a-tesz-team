@@ -33,6 +33,7 @@ public class Globals {
     public static Image simpleEnemy = new Image("simple_enemy.png");
     public static Image snakeTracker = new Image("snake_tracker.png");
     public static Image vary = new Image("vary.png");
+    public static Image jarJar = new Image("jar_jar.png");
     public static Image slow = new Image("slow.png");
     public static Image turn = new Image("turn.png");
     public static Image fast = new Image("fast.png");
