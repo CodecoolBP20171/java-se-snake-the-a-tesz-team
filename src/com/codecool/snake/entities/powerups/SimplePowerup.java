@@ -30,11 +30,13 @@ public class SimplePowerup extends GameEntity implements Interactable {
     @Override
     public void apply(SnakeHead snakeHead) {
         snakeHead.addPart(4);
-        int newCounter = snakeHead.getShootCounter() + 5;
-        snakeHead.setShootCounter(newCounter);
-        if (snakeHead.getShootCounter() > 5) {
-            Globals.ammoCounter.setText("Ammo: " + newCounter);
+        if (snakeHead.getShootCounter() < 0) {
+            snakeHead.setShootCounter(0);
         }
+        int newShootCounter = snakeHead.getShootCounter() + 5;
+        snakeHead.setShootCounter(newShootCounter);
+        
+        Globals.ammoCounter.setText("Ammo: " + newShootCounter);
         destroy();
     }
 
