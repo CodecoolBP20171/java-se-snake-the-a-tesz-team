@@ -22,6 +22,7 @@ public class Globals {
 
     public static Stage window;
     public static Scene startScene;
+    public static Scene endScene;
     public static boolean paused;
     public static boolean gameOver;
 
