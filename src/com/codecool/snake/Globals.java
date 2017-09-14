@@ -39,6 +39,8 @@ public class Globals {
     public static Image slow = new Image("slow.png");
     public static Image turn = new Image("turn.png");
     public static Image fast = new Image("fast.png");
+    public static Image health = new Image("health.png");
+    public static Image nitro = new Image("nitro.png");
     public static Image powerupEgg = new Image("powerup_egg.png");
 
     public static Image redLaser = new Image("red_laser.png");
