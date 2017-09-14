@@ -27,6 +27,7 @@ public class GameLoop extends AnimationTimer {
             Globals.gameLoop.stop();
             Globals.leftKeyDown = false;
             Globals.rightKeyDown = false;
+            Globals.shootCounter = 5;
             Main.mediaPlayer.stop();
             Main.showGameOver();
         }

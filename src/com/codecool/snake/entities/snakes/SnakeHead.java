@@ -28,7 +28,6 @@ public class SnakeHead extends GameEntity implements Animatable {
     private static int score=0;
 
     private static Point2D SnakeHeadHeading;
-    static int shootCounter = 5;
 
     public static double getCoordX() {
         return coordX;
@@ -39,11 +38,11 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
     public int getShootCounter() {
-        return shootCounter;
+        return Globals.shootCounter;
     }
 
     public void setShootCounter(int newValue) {
-        this.shootCounter = newValue;
+        Globals.shootCounter = newValue;
     }
 
     public static Point2D getHeading() {
@@ -53,8 +52,8 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
-        if (shootCounter == 5) {
-            Globals.ammoCounter.setText("Ammo: " + shootCounter);
+        if (Globals.shootCounter == 5) {
+            Globals.ammoCounter.setText("Ammo: " + Globals.shootCounter);
         }
         health = 100;
         Globals.healthCounter.setText("Health: " + health);
@@ -181,9 +180,9 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     private void changeAmmo(double dir) {
         Laser shoot = new Laser(pane, getX(), getY(), dir);
-        shootCounter--;
-        Globals.ammoCounter.setText("Ammo: " + shootCounter);
-        if (shootCounter < 0) {
+        Globals.shootCounter--;
+        Globals.ammoCounter.setText("Ammo: " + Globals.shootCounter);
+        if (Globals.shootCounter < 0) {
             shoot.destroy();
             Globals.ammoCounter.setText("Ammo: 0");
         }
