@@ -1,0 +1,13 @@
+.root {
+    -fx-background-color: lightskyblue;
+    -fx-background-size: cover;
+}
+
+.label {
+    -fx-font-family: monospace;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-label-padding: 5px 20px;
+
+}
