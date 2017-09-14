@@ -20,6 +20,13 @@ public class Game extends Pane {
     public static Game thisGame;
     private static int powerUpDelay;
 
+
+    private static ActionListener spawnPowerUp = evt -> ableToSpawn = true;
+    private static ActionListener randomDelay = evt -> randomPowerSpawn();
+    public static Timer timer = new Timer(powerUpDelay, spawnPowerUp);
+    public static Timer delayTimer = new Timer(powerUpDelay, randomDelay);
+
+
     public Game() {
         newGame();
     }
@@ -38,12 +45,6 @@ public class Game extends Pane {
     }
 
     public static void generatePowerUp() {
-        ActionListener spawnPowerUp = evt -> ableToSpawn = true;
-        ActionListener randomDelay = evt -> randomPowerSpawn();
-
-        Timer timer = new Timer(powerUpDelay, spawnPowerUp);
-        Timer delayTimer = new Timer(powerUpDelay, randomDelay);
-
         delayTimer.setRepeats(true);
         delayTimer.start();
 
