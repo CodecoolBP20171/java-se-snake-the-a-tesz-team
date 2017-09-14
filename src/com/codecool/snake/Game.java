@@ -164,6 +164,7 @@ public class Game extends Pane {
         }
         Globals.rightKeyDown = false;
         Globals.leftKeyDown = false;
+        Globals.shootCounter = 5;
         Main.mediaPlayer.stop();
         Main.mediaPlayer.play();
         newGame();

@@ -34,7 +34,7 @@ public class Globals {
     public static Image simpleEnemy = new Image("simple_enemy.gif");
     public static Image snakeTracker = new Image("snake_tracker.gif");
     public static Image vary = new Image("vary.gif");
-
+    public static int shootCounter = 5;
     public static Image slow = new Image("slow.png");
     public static Image turn = new Image("turn.png");
     public static Image fast = new Image("fast.png");
