@@ -7,7 +7,11 @@ import com.codecool.snake.entities.enemies.SnakeTracker;
 import com.codecool.snake.entities.enemies.Vary;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -103,4 +107,5 @@ public class Game extends Pane {
         }
         newGame();
     }
+
 }
