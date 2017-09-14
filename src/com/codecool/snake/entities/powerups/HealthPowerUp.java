@@ -1,6 +1,5 @@
 package com.codecool.snake.entities.powerups;
 
-import com.codecool.snake.Game;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
@@ -10,11 +9,11 @@ import javafx.scene.layout.Pane;
 
 import java.util.Random;
 
-public class SpeedingPowerUp extends GameEntity implements Interactable {
+public class HealthPowerUp extends GameEntity implements Interactable {
 
-    public SpeedingPowerUp(Pane pane) {
+    public HealthPowerUp(Pane pane) {
         super(pane);
-        setImage(Globals.fast);
+        setImage(Globals.health);
         pane.getChildren().add(this);
 
         Random rnd = new Random();
@@ -24,8 +23,9 @@ public class SpeedingPowerUp extends GameEntity implements Interactable {
 
     @Override
     public void apply(SnakeHead snakeHead) {
-        snakeHead.changeSpeed((float) 0.5, 7000);
-
+        if(snakeHead.getHealth() < 100) {
+            snakeHead.changeHealth(10);
+        }
         destroy();
     }
 
@@ -36,6 +36,6 @@ public class SpeedingPowerUp extends GameEntity implements Interactable {
 
     @Override
     public String getMessage() {
-        return "Im fast as fck!!4444!";
+        return "Im HEALTHY BITCHES";
     }
 }

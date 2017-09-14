@@ -22,9 +22,7 @@ public class Game extends Pane {
 
 
     private static ActionListener spawnPowerUp = evt -> ableToSpawn = true;
-    private static ActionListener randomDelay = evt -> randomPowerSpawn();
-    public static Timer timer = new Timer(powerUpDelay, spawnPowerUp);
-    public static Timer delayTimer = new Timer(powerUpDelay, randomDelay);
+    private static Timer timer = new Timer(powerUpDelay, spawnPowerUp);
 
 
     public Game() {
@@ -39,27 +37,23 @@ public class Game extends Pane {
         new Vary(this);
         new SimpleEnemy(this);
 
-        randomPowerSpawn(7000, 2000);
+        randomizePowerSpawn(7000, 2000);
         startTimers();
         Globals.gameOver = false;
     }
 
     private static void startTimers() {
-        delayTimer.setRepeats(true);
-        delayTimer.start();
-
         timer.setRepeats(true);
         timer.start();
     }
 
     public static void endTimers() {
         timer.stop();
-        delayTimer.stop();
     }
 
     public static int chooseRandomPowerUp() {
         Random powerUpRandomizer = new Random();
-        return powerUpRandomizer.nextInt(4 - 1 + 1) +1;
+        return powerUpRandomizer.nextInt(7 - 1 + 1) +1;
     }
 
 
@@ -70,7 +64,7 @@ public class Game extends Pane {
         ableToSpawn=value;
     }
 
-    public static void randomPowerSpawn (int max, int min) {
+    public static void randomizePowerSpawn(int max, int min) {
         Random randomGenerator = new Random();
         powerUpDelay = randomGenerator.nextInt(max - min +1) + min;
     }
@@ -89,6 +83,7 @@ public class Game extends Pane {
                 case SPACE: Globals.spaceDown = false; break;
                 case P:     Globals.paused = !Globals.paused; break;
                 case R:     restart(); break;
+                case SHIFT: Globals.nitro = true; break;
             }
         });
 

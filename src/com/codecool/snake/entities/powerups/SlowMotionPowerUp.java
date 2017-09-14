@@ -23,8 +23,7 @@ public class SlowMotionPowerUp extends GameEntity implements Interactable {
 
     @Override
     public void apply(SnakeHead snakeHead) {
-        snakeHead.changeSpeed((float) -0.5);
-
+        snakeHead.changeSpeed((float) -0.5, 7000);
         destroy();
     }
 

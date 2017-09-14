@@ -6,12 +6,12 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
-import com.codecool.snake.entities.powerups.SimplePowerup;
-import com.codecool.snake.entities.powerups.SlowMotionPowerUp;
-import com.codecool.snake.entities.powerups.SpeedingPowerUp;
-import com.codecool.snake.entities.powerups.TurnRatePowerUp;
+import com.codecool.snake.entities.powerups.*;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
@@ -21,6 +21,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     private int health;
     private static double coordX;
     private static double coordY;
+    public static int numOfNitros = 2;
 
     private static Point2D SnakeHeadHeading;
     static int shootCounter = 5;
@@ -31,6 +32,10 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public static double getCoordY() {
         return coordY;
+    }
+
+    public void setCoordX(double coordX) {
+        SnakeHead.coordX = coordX;
     }
 
     public int getShootCounter() {
@@ -111,10 +116,22 @@ public class SnakeHead extends GameEntity implements Animatable {
                 case 4:
                     new TurnRatePowerUp(Game.thisGame);
                     break;
+                case 5:
+                    new HealthPowerUp(Game.thisGame);
+                    break;
+                case 6:
+                    new nitroPowerUp(Game.thisGame);
             }
 
             Game.setAbleToSpawn(false);
+            Game.randomizePowerSpawn(7000, 2000);
             Game.numOfPowerUps++;
+        }
+
+        if(numOfNitros >= 1 && Globals.nitro) {
+            this.changeSpeed(2, 2000);
+            numOfNitros--;
+            Globals.nitro = false;
         }
 
         // check for game over condition
@@ -136,17 +153,17 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
     }
 
-    public void changeSpeed(float speedChange) {
+    public void changeSpeed(float speedChange, int time) {
         if (speed > 0.5 && speed < 5) {
             speed += speedChange;
-            new java.util.Timer().schedule(
-                    new java.util.TimerTask() {
+            new Timer().schedule(
+                    new TimerTask() {
                         @Override
                         public void run() {
                             speed -= speedChange;
                         }
                     },
-                    7000
+                    time
             );
         }
 
@@ -176,6 +193,16 @@ public class SnakeHead extends GameEntity implements Animatable {
             Globals.ammoCounter.setText("Ammo: 0");
         }
         Globals.spaceDown = false;
+    }
+
+
+
+    public int getHealth() {
+        return health;
+    }
+
+    public static void setNumOfNitros(int numOfNitros) {
+        SnakeHead.numOfNitros = numOfNitros;
     }
 
     public void changeHealth(int diff) {

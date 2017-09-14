@@ -10,11 +10,10 @@ import javafx.scene.layout.Pane;
 
 import java.util.Random;
 
-public class SpeedingPowerUp extends GameEntity implements Interactable {
-
-    public SpeedingPowerUp(Pane pane) {
+public class nitroPowerUp extends GameEntity implements Interactable {
+    public nitroPowerUp(Pane pane) {
         super(pane);
-        setImage(Globals.fast);
+        setImage(Globals.nitroPic);
         pane.getChildren().add(this);
 
         Random rnd = new Random();
@@ -24,8 +23,7 @@ public class SpeedingPowerUp extends GameEntity implements Interactable {
 
     @Override
     public void apply(SnakeHead snakeHead) {
-        snakeHead.changeSpeed((float) 0.5, 7000);
-
+        snakeHead.setNumOfNitros(1);
         destroy();
     }
 
@@ -36,6 +34,6 @@ public class SpeedingPowerUp extends GameEntity implements Interactable {
 
     @Override
     public String getMessage() {
-        return "Im fast as fck!!4444!";
+        return "Im HEALTHY BITCHES";
     }
 }
