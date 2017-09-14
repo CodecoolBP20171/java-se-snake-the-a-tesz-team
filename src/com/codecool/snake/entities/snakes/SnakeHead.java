@@ -161,6 +161,7 @@ public class SnakeHead extends GameEntity implements Animatable {
             );
         }
 
+
     }
 
     public void changeTurnRate(float turnRateChange) {
@@ -200,5 +201,8 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
     public static int getScore() {
         return score;
+    }
+    public static void setScore(int score) {
+        SnakeHead.score = score;
     }
 }

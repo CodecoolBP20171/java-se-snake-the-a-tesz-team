@@ -1,6 +1,7 @@
 .root{
     -fx-background-image: url("../menu-bg.jpg");
     -fx-background-size: cover;
+    -fx-opacity: 0.9;
 }
 
 .button {
@@ -17,10 +18,23 @@
     -fx-font-size: 40px;
     -fx-font-weight: bold;
     -fx-padding: 10 40 10 40;
-    -fx-min-width: 380px;
-
 }
-.button:hover{
+#musicBTN{
+    -fx-background-color:
+            #090a0c,
+            linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+            linear-gradient(#20262b, #191d22),
+            radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 5,4,3,5;
+    -fx-background-insets: 0,1,2,0;
+    -fx-text-fill: lightgrey;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: monospace;
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 40 10 40;
+}
+.button:hover,#musicBTN:hover{
     -fx-background-color:
             #090a0c,
             linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
