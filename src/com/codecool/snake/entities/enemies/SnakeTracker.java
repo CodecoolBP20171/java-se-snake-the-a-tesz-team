@@ -12,19 +12,18 @@ import javafx.scene.layout.Pane;
 
 import java.util.Random;
 
-import static java.lang.Math.abs;
 import static java.lang.Math.toDegrees;
 
 public class SnakeTracker extends GameEntity implements Animatable, Interactable {
 
     private Point2D heading;
     private static final int damage = 5;
+    private static final double speed = 0.5;
 
     public SnakeTracker(Pane pane) {
         super(pane);
         setImage(Globals.snakeTracker);
-        pane.getChildren().add(this);
-        int speed = 1;
+        pane.getChildren().add(this);;
 
         Random rnd = new Random();
         double SnakeHeadX=SnakeHead.getCoordX();
@@ -37,7 +36,6 @@ public class SnakeTracker extends GameEntity implements Animatable, Interactable
         }
         setX(spawnPositionX);
         setY(spawnPositionY);
-
         double direction = rnd.nextDouble() * 360;
         setRotate(direction);
         heading = Utils.directionToVector(direction, speed);
@@ -49,21 +47,20 @@ public class SnakeTracker extends GameEntity implements Animatable, Interactable
         return (spawnPositionX>SnakeHeadX-safeRadius && spawnPositionX<SnakeHeadX+safeRadius) && (spawnPositionY>SnakeHeadY-safeRadius && spawnPositionY<SnakeHeadY+safeRadius);
         }
 
-
     @Override
     public void step() {
         if (isOutOfBounds()) {
             destroy();
         }
-        double direction = angleToTurn();
-        setRotate(direction);
-        double speed = 0.2;
+        double direction = angleToTurnTo();
+        setRotate(direction);;
+
         heading = Utils.directionToVector(direction, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
     }
 
-    public double angleToTurn(){
+    private double angleToTurnTo(){
         double currX=SnakeHead.getCoordX();
         double currY=SnakeHead.getCoordY();
         double trackerX = getX();
@@ -76,14 +73,6 @@ public class SnakeTracker extends GameEntity implements Animatable, Interactable
         double result = (tangentInDegrees)+90;
 
         return result;
-
-
-
-
-
-
-
-
     }
     @Override
     public void apply(SnakeHead player) {
@@ -99,6 +88,6 @@ public class SnakeTracker extends GameEntity implements Animatable, Interactable
 
     @Override
     public String getMessage() {
-        return "10 damage";
+        return damage + " damage";
     }
 }

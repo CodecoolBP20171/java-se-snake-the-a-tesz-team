@@ -1,5 +1,6 @@
 package com.codecool.snake;
 
+import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,9 +10,9 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.scene.text.Text;
 
 public class Main extends Application {
 
@@ -68,10 +69,11 @@ public class Main extends Application {
         menuScene.getChildren().addAll(startButton, info);
         menuScene.getStylesheets().add("css/menu.css");
 
-        Globals.startScene = new Scene(menuScene, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
 
-        primaryStage.setScene(Globals.startScene);
-        primaryStage.show();
-    }
+		// crating & show scene
+		Globals.startScene = new Scene(menuScene, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
+		primaryStage.setScene(Globals.startScene);
+		primaryStage.show();
+	}
 
 }

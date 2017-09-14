@@ -23,6 +23,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     private int health;
     private static double coordX;
     private static double coordY;
+
     private static Point2D SnakeHeadHeading;
     static int shootCounter = 5;
 
@@ -53,9 +54,7 @@ public class SnakeHead extends GameEntity implements Animatable {
             Globals.ammoCounter.setText("Ammo: " + shootCounter);
         }
         health = 100;
-        if (health == 100) {
-            Globals.healthCounter.setText("Health: " + health);
-        }
+        Globals.healthCounter.setText("Health: " + health);
         setX(xc);
         setY(yc);
         tail = this;
@@ -86,10 +85,9 @@ public class SnakeHead extends GameEntity implements Animatable {
         Point2D heading = Utils.directionToVector(dir, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
-        coordX = getX();
-        coordY = getY();
-        SnakeHeadHeading = heading;
 
+        coordX=getX();
+        coordY=getY();
 
         // check if collided with an enemy or a powerup
         for (GameEntity entity : Globals.getGameObjects()) {
