@@ -9,11 +9,11 @@ import javafx.scene.layout.Pane;
 
 import java.util.Random;
 
-public class SlowMotionPowerUp extends GameEntity implements Interactable {
+public class HealthPowerUp extends GameEntity implements Interactable {
 
-    public SlowMotionPowerUp(Pane pane) {
+    public HealthPowerUp(Pane pane) {
         super(pane);
-        setImage(Globals.slow);
+        setImage(Globals.health);
         pane.getChildren().add(this);
 
         Random rnd = new Random();
@@ -22,19 +22,20 @@ public class SlowMotionPowerUp extends GameEntity implements Interactable {
     }
 
     @Override
-    public void apply(SnakeHead snakeHead) {
-        snakeHead.changeSpeed((float) -0.5, 7000);
+    public void shoot(Laser laser) {
+        System.out.println("fire");
+    }
 
+    @Override
+    public void apply(SnakeHead snakeHead) {
+        if(snakeHead.getHealth() <= 90) {
+            snakeHead.changeHealth(10);
+        }
         destroy();
     }
 
     @Override
-    public void shoot(Laser laser) {
-        System.out.println("shoot");
-    }
-
-    @Override
     public String getMessage() {
-        return "Im NEO BITCHES";
+        return "Got power-up :)";
     }
 }

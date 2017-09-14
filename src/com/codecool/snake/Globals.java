@@ -26,6 +26,8 @@ public class Globals {
     public static Scene infoScene;
     public static boolean paused;
     public static boolean gameOver;
+    public static boolean isNitro = false;
+    public static int numOfNitros = 2;
 
     //images
     public static Image snakeHead = new Image("snake_head.png");
@@ -40,7 +42,7 @@ public class Globals {
     public static Image turn = new Image("turn.png");
     public static Image fast = new Image("fast.png");
     public static Image health = new Image("health.png");
-    public static Image nitro = new Image("nitro.png");
+    public static Image nitro = new Image("nitro.gif");
     public static Image powerupEgg = new Image("powerup_egg.png");
 
     public static Image redLaser = new Image("red_laser.png");
