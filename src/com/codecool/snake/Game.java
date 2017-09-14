@@ -39,12 +39,12 @@ public class Game extends Pane {
         new Vary(this);
         new SimpleEnemy(this);
 
-        randomPowerSpawn();
-        generatePowerUp();
+        randomPowerSpawn(7000, 2000);
+        startTimers();
         Globals.gameOver = false;
     }
 
-    public static void generatePowerUp() {
+    private static void startTimers() {
         delayTimer.setRepeats(true);
         delayTimer.start();
 
@@ -52,7 +52,12 @@ public class Game extends Pane {
         timer.start();
     }
 
-    public static int randomizePowerUp() {
+    public static void endTimers() {
+        timer.stop();
+        delayTimer.stop();
+    }
+
+    public static int chooseRandomPowerUp() {
         Random powerUpRandomizer = new Random();
         return powerUpRandomizer.nextInt(4 - 1 + 1) +1;
     }
@@ -65,9 +70,9 @@ public class Game extends Pane {
         ableToSpawn=value;
     }
 
-    public static void randomPowerSpawn () {
+    public static void randomPowerSpawn (int max, int min) {
         Random randomGenerator = new Random();
-        powerUpDelay = randomGenerator.nextInt(10000 - 2000 +1) + 2000;
+        powerUpDelay = randomGenerator.nextInt(max - min +1) + min;
     }
 
     public Game getThis() {

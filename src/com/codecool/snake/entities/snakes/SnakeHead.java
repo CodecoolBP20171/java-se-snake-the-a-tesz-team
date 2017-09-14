@@ -12,8 +12,6 @@ import com.codecool.snake.entities.powerups.SpeedingPowerUp;
 import com.codecool.snake.entities.powerups.TurnRatePowerUp;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
@@ -100,7 +98,7 @@ public class SnakeHead extends GameEntity implements Animatable {
             }
         }
         if (Game.getAbleToSpawn() && Game.numOfPowerUps <= 5) {
-            switch (Game.randomizePowerUp()) {
+            switch (Game.chooseRandomPowerUp()) {
                 case 1:
                     new SimplePowerup(Game.thisGame);
                     break;
@@ -126,8 +124,7 @@ public class SnakeHead extends GameEntity implements Animatable {
                 gameEntity.destroy();
             }
             Globals.gameOver = true;
-            Game.timer.stop();
-            Game.delayTimer.stop();
+            Game.endTimers();
 
         }
     }
