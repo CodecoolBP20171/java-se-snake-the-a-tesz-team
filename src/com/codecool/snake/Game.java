@@ -130,6 +130,7 @@ public class Game extends Pane {
                     break;
                 case SHIFT:
                     Globals.isNitro = true;
+                    break;
                 case Q:
                     Globals.window.close();
                     break;
