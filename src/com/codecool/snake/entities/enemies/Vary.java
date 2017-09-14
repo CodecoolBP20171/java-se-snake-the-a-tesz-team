@@ -33,7 +33,6 @@ public class Vary extends GameEntity implements Animatable, Interactable {
         while (isSafeToSpawn(spawnPositionX,SnakeHeadX,spawnPositionY,SnakeHeadY)){
             spawnPositionX = rnd.nextDouble() * Globals.WINDOW_WIDTH;
             spawnPositionY = rnd.nextDouble() * Globals.WINDOW_HEIGHT;
-            System.out.println("Enemy spawn prohibited on SnakeHead");
         }
         setX(spawnPositionX);
         setY(spawnPositionY);

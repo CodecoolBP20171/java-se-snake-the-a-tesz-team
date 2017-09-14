@@ -14,7 +14,7 @@ public class SimplePowerup extends GameEntity implements Interactable {
 
     public SimplePowerup(Pane pane) {
         super(pane);
-        setImage(Globals.powerupBerry);
+        setImage(Globals.powerupEgg);
         pane.getChildren().add(this);
 
         Random rnd = new Random();
@@ -30,6 +30,13 @@ public class SimplePowerup extends GameEntity implements Interactable {
     @Override
     public void apply(SnakeHead snakeHead) {
         snakeHead.addPart(4);
+        if (snakeHead.getShootCounter() < 0) {
+            snakeHead.setShootCounter(0);
+        }
+        int newShootCounter = snakeHead.getShootCounter() + 5;
+        snakeHead.setShootCounter(newShootCounter);
+        
+        Globals.ammoCounter.setText("Ammo: " + newShootCounter);
         destroy();
     }
 

@@ -30,7 +30,7 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
         while (isSafeToSpawn(spawnPositionX, SnakeHeadX, spawnPositionY, SnakeHeadY)) {
             spawnPositionX = rnd.nextDouble() * Globals.WINDOW_WIDTH;
             spawnPositionY = rnd.nextDouble() * Globals.WINDOW_HEIGHT;
-            System.out.println("Enemy spawn prohibited on SnakeHead");
+
         }
         setX(spawnPositionX);
         setY(spawnPositionY);
@@ -39,11 +39,13 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
         heading = Utils.directionToVector(direction, speed);
     }
 
-    /**Checks if enemy spawn coordinates collide, or within the safe radius of the snake's head*/
-    private boolean isSafeToSpawn(double spawnPositionX, double SnakeHeadX, double spawnPositionY, double SnakeHeadY){
+    /**
+     * Checks if enemy spawn coordinates collide, or within the safe radius of the snake's head
+     */
+    private boolean isSafeToSpawn(double spawnPositionX, double SnakeHeadX, double spawnPositionY, double SnakeHeadY) {
         int safeRadius = 100;
-        return (spawnPositionX>SnakeHeadX-safeRadius && spawnPositionX<SnakeHeadX+safeRadius) && (spawnPositionY>SnakeHeadY-safeRadius && spawnPositionY<SnakeHeadY+safeRadius);
-        }
+        return (spawnPositionX > SnakeHeadX - safeRadius && spawnPositionX < SnakeHeadX + safeRadius) && (spawnPositionY > SnakeHeadY - safeRadius && spawnPositionY < SnakeHeadY + safeRadius);
+    }
 
 
     @Override

@@ -33,7 +33,6 @@ public class SnakeTracker extends GameEntity implements Animatable, Interactable
         while (isSafeToSpawn(spawnPositionX,SnakeHeadX,spawnPositionY,SnakeHeadY)){
             spawnPositionX = rnd.nextDouble() * Globals.WINDOW_WIDTH;
             spawnPositionY = rnd.nextDouble() * Globals.WINDOW_HEIGHT;
-            System.out.println("Enemy spawn prohibited on SnakeHead");
         }
         setX(spawnPositionX);
         setY(spawnPositionY);
@@ -55,6 +54,7 @@ public class SnakeTracker extends GameEntity implements Animatable, Interactable
         }
         double direction = angleToTurnTo();
         setRotate(direction);;
+
         heading = Utils.directionToVector(direction, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
@@ -71,6 +71,7 @@ public class SnakeTracker extends GameEntity implements Animatable, Interactable
         double tangentA = Math.atan2(deltaY,deltaX);
         double tangentInDegrees = toDegrees(tangentA);
         double result = (tangentInDegrees)+90;
+
         return result;
     }
     @Override

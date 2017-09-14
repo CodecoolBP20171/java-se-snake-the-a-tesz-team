@@ -16,70 +16,59 @@ import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    public static Stage window;
+
+    @Override
+    public void start(Stage primaryStage) {
+
+        primaryStage.setTitle("Snake Game");
+        window = primaryStage;
+
+        Pane menuScene = new Pane();
+
+        Button startButton = new Button("START GAME");
+        primaryStage.initStyle(StageStyle.UNIFIED);
+        primaryStage.setFullScreen(true); //maxsize
+        startButton.setLayoutX(300);
+        startButton.setLayoutY(150);
 
 
-	public static void main(String[] args) {
-		launch(args);
-	}
+        DropShadow ds = new DropShadow();
+        ds.setOffsetY(3.0f);
+        ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
 
-	@Override
-	public void start(Stage primaryStage) {
+        javafx.scene.text.Text info = new Text();
+        info.setEffect(ds);
+        info.setCache(true);
+        info.setX(Globals.WINDOW_WIDTH * 0.3);
+        info.setY(40);
+        info.setFill(Color.BLACK);
+        info.setText("Press 'P' to Pause the game or 'R' to Restart");
+        info.setFont(Font.font(null, FontWeight.BOLD, 32));
 
-		// creating a Pane
-		primaryStage.setTitle("Snake Game");
-		Globals.window = primaryStage;
-		Pane menuScene = new Pane();
 
-		// start button
-		Button startButton = new Button("START GAME");
-		primaryStage.initStyle(StageStyle.UNIFIED);
-		primaryStage.setFullScreen(true); //maxsize
-		startButton.setLayoutX(300);
-		startButton.setLayoutY(150);
+        startButton.setOnAction(e -> {
+                    Game game = new Game();
+                    Globals.ammoCounter.setTranslateY(50);
+                    game.getChildren().addAll(Globals.healthCounter, Globals.ammoCounter);
+                    Scene gameScene = new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
+                    gameScene.getStylesheets().add("css/snake.css");
+                    primaryStage.setScene(gameScene);
+                    Globals.window = primaryStage;
+                    MediaPlayer mediaPlayer = new MediaPlayer(Globals.sound);
+                    mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+                    mediaPlayer.play();
+                    game.start();
+                }
+        );
 
-		// new text shadow
-		DropShadow shadow = new DropShadow();
-		shadow.setOffsetY(3.0f);
-		shadow.setColor(Color.color(0.4f, 0.4f, 0.4f));
+        menuScene.getChildren().addAll(startButton, info);
+        menuScene.getStylesheets().add("css/menu.css");
 
-		// new text keybindings
-		javafx.scene.text.Text keybindings = new Text();
-		keybindings.setText("Press 'P' to Pause the game or 'R' to Restart");
-		keybindings.setEffect(shadow);
-		keybindings.setCache(true);
-		keybindings.setX(Globals.WINDOW_WIDTH * 0.3);
-		keybindings.setY(40);
-		keybindings.setFill(Color.BLACK);
-		keybindings.setFont(Font.font(null, FontWeight.BOLD, 32));
-
-		// new text player info
-		javafx.scene.text.Text info = new Text();
-		info.setText("Health: " + "health_here" + " " + "Score: " + "length_here");
-		info.setEffect(shadow);
-		info.setCache(true);
-		info.setX(Globals.WINDOW_WIDTH * 0.3);
-		info.setY(Globals.WINDOW_HEIGHT);
-		info.setFill(Color.BLACK);
-		info.setFont(Font.font(null, FontWeight.BOLD, 32));
-
-		// start button click handler
-		startButton.setOnAction(e -> {
-					Game game = new Game();
-					game.getChildren().add(Globals.healthCounter);
-					Scene gameScene = new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
-					gameScene.getStylesheets().add("css/snake.css");
-					primaryStage.setScene(gameScene);
-					Globals.window = primaryStage;
-					MediaPlayer mediaPlayer = new MediaPlayer(Globals.sound);
-					mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); //music plays until game ends
-					mediaPlayer.play();
-					game.start();
-				}
-		);
-
-		// adding button and texts to start screen
-		menuScene.getChildren().addAll(startButton, keybindings, info);
-		menuScene.getStylesheets().add("css/menu.css");
 
 		// crating & show scene
 		Globals.startScene = new Scene(menuScene, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
