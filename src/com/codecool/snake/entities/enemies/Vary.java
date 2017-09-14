@@ -15,7 +15,7 @@ import java.util.Random;
 public class Vary extends GameEntity implements Animatable, Interactable {
 
     private Point2D heading;
-    private static final int damage = 10;
+    private static final int damage = 15;
     private double direction = 360;
     private int speed = 1;
     private int frameCounter = 0;
@@ -42,7 +42,7 @@ public class Vary extends GameEntity implements Animatable, Interactable {
 
     /**Checks if enemy spawn coordinates collide, or within the safe radius of the snake's head*/
     private boolean isSafeToSpawn(double spawnPositionX, double SnakeHeadX, double spawnPositionY, double SnakeHeadY){
-        int safeRadius = 100;
+        int safeRadius = 200;
         return (spawnPositionX>SnakeHeadX-safeRadius && spawnPositionX<SnakeHeadX+safeRadius) && (spawnPositionY>SnakeHeadY-safeRadius && spawnPositionY<SnakeHeadY+safeRadius);
         }
 
@@ -87,6 +87,11 @@ public class Vary extends GameEntity implements Animatable, Interactable {
     public void apply(SnakeHead player) {
         player.changeHealth(-damage);
         destroy();
+        Random random = new Random();
+        int chance = random.nextInt((1 - 0) + 1) + 0;
+        if (chance == 1) {
+            new Vary(pane);
+        }
     }
 
     @Override

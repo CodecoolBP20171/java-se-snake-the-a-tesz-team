@@ -24,7 +24,7 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
+    public static MediaPlayer mediaPlayer = new MediaPlayer(Globals.sound);
     public static Stage window;
 
 	@Override

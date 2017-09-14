@@ -17,20 +17,20 @@ import static java.lang.Math.toDegrees;
 public class SnakeTracker extends GameEntity implements Animatable, Interactable {
 
     private Point2D heading;
-    private static final int damage = 5;
-    private static final double speed = 0.5;
+    private static final int damage = 10;
+    private static final double speed = 1.2;
 
     public SnakeTracker(Pane pane) {
         super(pane);
         setImage(Globals.snakeTracker);
-        pane.getChildren().add(this);;
+        pane.getChildren().add(this);
 
         Random rnd = new Random();
-        double SnakeHeadX=SnakeHead.getCoordX();
-        double SnakeHeadY=SnakeHead.getCoordY();
+        double SnakeHeadX = SnakeHead.getCoordX();
+        double SnakeHeadY = SnakeHead.getCoordY();
         double spawnPositionX = rnd.nextDouble() * Globals.WINDOW_WIDTH;
         double spawnPositionY = rnd.nextDouble() * Globals.WINDOW_HEIGHT;
-        while (isSafeToSpawn(spawnPositionX,SnakeHeadX,spawnPositionY,SnakeHeadY)){
+        while (isSafeToSpawn(spawnPositionX, SnakeHeadX, spawnPositionY, SnakeHeadY)) {
             spawnPositionX = rnd.nextDouble() * Globals.WINDOW_WIDTH;
             spawnPositionY = rnd.nextDouble() * Globals.WINDOW_HEIGHT;
         }
@@ -41,43 +41,53 @@ public class SnakeTracker extends GameEntity implements Animatable, Interactable
         heading = Utils.directionToVector(direction, speed);
     }
 
-    /**Checks if enemy spawn coordinates collide, or within the safe radius of the snake's head*/
-    private boolean isSafeToSpawn(double spawnPositionX, double SnakeHeadX, double spawnPositionY, double SnakeHeadY){
-        int safeRadius = 100;
-        return (spawnPositionX>SnakeHeadX-safeRadius && spawnPositionX<SnakeHeadX+safeRadius) && (spawnPositionY>SnakeHeadY-safeRadius && spawnPositionY<SnakeHeadY+safeRadius);
-        }
+    /**
+     * Checks if enemy spawn coordinates collide, or within the safe radius of the snake's head
+     */
+    private boolean isSafeToSpawn(double spawnPositionX, double SnakeHeadX, double spawnPositionY, double SnakeHeadY) {
+        int safeRadius = 200;
+        return (spawnPositionX > SnakeHeadX - safeRadius && spawnPositionX < SnakeHeadX + safeRadius) && (spawnPositionY > SnakeHeadY - safeRadius && spawnPositionY < SnakeHeadY + safeRadius);
+    }
 
     @Override
     public void step() {
         if (isOutOfBounds()) {
             destroy();
+            new SnakeTracker(pane);
         }
         double direction = angleToTurnTo();
-        setRotate(direction);;
+        setRotate(direction);
+        ;
 
         heading = Utils.directionToVector(direction, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
     }
 
-    private double angleToTurnTo(){
-        double currX=SnakeHead.getCoordX();
-        double currY=SnakeHead.getCoordY();
+    private double angleToTurnTo() {
+        double currX = SnakeHead.getCoordX();
+        double currY = SnakeHead.getCoordY();
         double trackerX = getX();
         double trackerY = getY();
 
-        double deltaX = (currX-trackerX);
-        double deltaY = (currY-trackerY);
-        double tangentA = Math.atan2(deltaY,deltaX);
+        double deltaX = (currX - trackerX);
+        double deltaY = (currY - trackerY);
+        double tangentA = Math.atan2(deltaY, deltaX);
         double tangentInDegrees = toDegrees(tangentA);
-        double result = (tangentInDegrees)+90;
+        double result = (tangentInDegrees) + 90;
 
         return result;
     }
+
     @Override
     public void apply(SnakeHead player) {
         player.changeHealth(-damage);
         destroy();
+        Random random = new Random();
+        int chance = random.nextInt((1 - 0) + 1) + 0;
+        if (chance == 1) {
+            new SnakeTracker(pane);
+        }
     }
 
     @Override

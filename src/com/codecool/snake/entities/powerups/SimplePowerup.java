@@ -38,6 +38,7 @@ public class SimplePowerup extends GameEntity implements Interactable {
         
         Globals.ammoCounter.setText("Ammo: " + newShootCounter);
         destroy();
+        new SimplePowerup(pane);
     }
 
     @Override
