@@ -23,6 +23,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     private int health;
     private static double coordX;
     private static double coordY;
+    private static int score=0;
 
     public static double getCoordX() {
         return coordX;
@@ -119,6 +120,7 @@ public class SnakeHead extends GameEntity implements Animatable {
             SnakeBody newPart = new SnakeBody(pane, tail);
             tail = newPart;
         }
+        score++;
     }
 
     public void changeSpeed(float speedChange) {
@@ -160,5 +162,8 @@ public class SnakeHead extends GameEntity implements Animatable {
         } else if (health <= 40) {
             setImage(Globals.almostDestroyedHead);
         }
+    }
+    public static int getScore() {
+        return score;
     }
 }

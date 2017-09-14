@@ -30,12 +30,15 @@ public class Main extends Application {
 		Globals.window = primaryStage;
 		Pane menuScene = new Pane();
 
+
 		// start button
 		Button startButton = new Button("START GAME");
 		primaryStage.initStyle(StageStyle.UNIFIED);
 		primaryStage.setFullScreen(true); //maxsize
-		startButton.setLayoutX(300);
-		startButton.setLayoutY(150);
+		startButton.setLayoutX(200);
+		startButton.setLayoutY(500);
+		startButton.setScaleX(0.8);
+		startButton.setScaleY(0.8);
 
 		// new text shadow
 		DropShadow shadow = new DropShadow();
@@ -47,20 +50,11 @@ public class Main extends Application {
 		keybindings.setText("Press 'P' to Pause the game or 'R' to Restart");
 		keybindings.setEffect(shadow);
 		keybindings.setCache(true);
-		keybindings.setX(Globals.WINDOW_WIDTH * 0.3);
-		keybindings.setY(40);
+		keybindings.setX(350);
+		keybindings.setY(80);
 		keybindings.setFill(Color.BLACK);
 		keybindings.setFont(Font.font(null, FontWeight.BOLD, 32));
 
-		// new text player info
-		javafx.scene.text.Text info = new Text();
-		info.setText("Health: " + "health_here" + " " + "Score: " + "length_here");
-		info.setEffect(shadow);
-		info.setCache(true);
-		info.setX(Globals.WINDOW_WIDTH * 0.3);
-		info.setY(Globals.WINDOW_HEIGHT);
-		info.setFill(Color.BLACK);
-		info.setFont(Font.font(null, FontWeight.BOLD, 32));
 
 		// start button click handler
 		startButton.setOnAction(e -> {
@@ -78,13 +72,54 @@ public class Main extends Application {
 		);
 
 		// adding button and texts to start screen
-		menuScene.getChildren().addAll(startButton, keybindings, info);
+		menuScene.getChildren().addAll(startButton, keybindings);
 		menuScene.getStylesheets().add("css/menu.css");
 
 		// crating & show scene
 		Globals.startScene = new Scene(menuScene, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
 		primaryStage.setScene(Globals.startScene);
 		primaryStage.show();
+	}
+	public static void showGameOver(){
+		Pane gameOverScene = new Pane();
+		Globals.endScene = new Scene(gameOverScene, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
+		// menu button
+		Button menuButton = new Button("Back to Main menu");
+		menuButton.setLayoutX(450);
+		menuButton.setLayoutY(500);
+		menuButton.setScaleX(0.5);
+		menuButton.setScaleY(0.5);
+		menuButton.setOnAction(e -> {
+			Globals.window.setScene(Globals.startScene);
+			Globals.window.show();
+		});
+		//shadow for text
+		DropShadow shadow = new DropShadow();
+		shadow.setOffsetY(3.0f);
+		shadow.setColor(Color.color(0.4f, 0.4f, 0.4f));
+		//GameOver message
+		javafx.scene.text.Text info = new Text();
+		info.setText("Meh, you got snaked!");
+		info.setEffect(shadow);
+		info.setCache(true);
+		info.setX(450);
+		info.setY(100);
+		info.setFill(Color.BLACK);
+		info.setFont(Font.font(null, FontWeight.BOLD, 32));
+		//results text
+		javafx.scene.text.Text results = new Text();
+		results.setText("Your score: " + SnakeHead.getScore());
+		results.setEffect(shadow);
+		results.setCache(true);
+		results.setX(450);
+		results.setY(250);
+		results.setFill(Color.BLACK);
+		results.setFont(Font.font(null, FontWeight.BOLD, 30));
+		//add buttons and style to scene
+		gameOverScene.getChildren().addAll(menuButton,info,results);
+		gameOverScene.getStylesheets().add("css/gameOver.css");
+		Globals.window.setScene(Globals.endScene);
+		Globals.window.show();
 	}
 
 }
