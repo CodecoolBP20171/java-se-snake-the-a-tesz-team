@@ -138,6 +138,9 @@ public class Game extends Pane {
                 case R:
                     restart();
                     break;
+                case Q:
+                    Globals.window.close();
+                    break;
             }
         });
 
