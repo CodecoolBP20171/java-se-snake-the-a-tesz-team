@@ -130,6 +130,8 @@ public class Game extends Pane {
                     break;
                 case SHIFT:
                     Globals.isNitro = true;
+                case Q:
+                    Globals.window.close();
                     break;
             }
         });
