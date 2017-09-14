@@ -8,10 +8,7 @@ import com.codecool.snake.entities.enemies.Vary;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -55,7 +52,7 @@ public class Game extends Pane {
 
         new SimplePowerup(this);
 
-        randomPowerSpawn();
+        randomizePowerSpawn();
         generatePowerUp();
         generateEnemy();
         Globals.gameOver = false;
@@ -64,14 +61,7 @@ public class Game extends Pane {
 
     public static void generatePowerUp() {
         ActionListener spawnPowerUp = evt -> ableToSpawnPowerup = true;
-        ActionListener randomDelay = evt -> randomPowerSpawn();
-
         Timer timer = new Timer(powerUpDelay, spawnPowerUp);
-        Timer delayTimer = new Timer(powerUpDelay, randomDelay);
-
-
-        delayTimer.setRepeats(true);
-        delayTimer.start();
 
         timer.setRepeats(true);
         timer.start();
@@ -88,7 +78,7 @@ public class Game extends Pane {
 
     public static int randomizePowerUp() {
         Random powerUpRandomizer = new Random();
-        return powerUpRandomizer.nextInt(4 - 1 + 1) + 1;
+        return powerUpRandomizer.nextInt(6 - 1 + 1) + 1;
     }
 
     public static boolean isAbleToSpawnEnemy() {
@@ -108,7 +98,7 @@ public class Game extends Pane {
         ableToSpawnPowerup = value;
     }
 
-    public static void randomPowerSpawn() {
+    public static void randomizePowerSpawn() {
         Random randomGenerator = new Random();
         powerUpDelay = randomGenerator.nextInt(10000 - 2000 + 1) + 2000;
     }
@@ -138,6 +128,8 @@ public class Game extends Pane {
                 case R:
                     restart();
                     break;
+                case SHIFT:
+                    Globals.isNitro = true;
                 case Q:
                     Globals.window.close();
                     break;
