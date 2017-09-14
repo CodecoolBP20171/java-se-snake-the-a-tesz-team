@@ -44,7 +44,6 @@ public class Globals {
 
     //sound
     public static Media sound = new Media(new File("resources/Angry Birds Theme Song.mp3").toURI().toString());
-    public static Media laserSound = new Media(new File("resources/laser_sound.mp3").toURI().toString());
 
     //counter
     public static Label healthCounter = new Label();

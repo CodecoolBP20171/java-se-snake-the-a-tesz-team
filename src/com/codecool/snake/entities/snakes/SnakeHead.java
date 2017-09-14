@@ -6,14 +6,16 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
-import com.codecool.snake.entities.powerups.SimplePowerup;
+import com.codecool.snake.entities.enemies.SimpleEnemy;
+import com.codecool.snake.entities.enemies.SnakeTracker;
+import com.codecool.snake.entities.enemies.Vary;
 import com.codecool.snake.entities.powerups.SlowMotionPowerUp;
 import com.codecool.snake.entities.powerups.SpeedingPowerUp;
 import com.codecool.snake.entities.powerups.TurnRatePowerUp;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+
+import java.util.Random;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
@@ -100,11 +102,11 @@ public class SnakeHead extends GameEntity implements Animatable {
                 }
             }
         }
-        if (Game.getAbleToSpawn() && Game.numOfPowerUps <= 5) {
+        if (Game.getAbleToSpawnPowerup() && Game.numOfPowerUps <= 5) {
             switch (Game.randomizePowerUp()) {
-                case 1:
+                /*case 1:
                     new SimplePowerup(Game.thisGame);
-                    break;
+                    break;*/
                 case 2:
                     new SlowMotionPowerUp(Game.thisGame);
                     break;
@@ -116,8 +118,15 @@ public class SnakeHead extends GameEntity implements Animatable {
                     break;
             }
 
-            Game.setAbleToSpawn(false);
+            Game.setAbleToSpawnPowerup(false);
             Game.numOfPowerUps++;
+        }
+
+        if (Game.isAbleToSpawnEnemy()){
+            new SimpleEnemy(pane);
+            new Vary(pane);
+            new SnakeTracker(pane);
+            Game.setAbleToSpawnEnemy(false);
         }
 
         // check for game over condition
