@@ -2,6 +2,8 @@ package com.codecool.snake;
 
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
@@ -13,6 +15,9 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
+
+import javax.xml.bind.annotation.XmlElementDecl;
 
 public class Main extends Application {
 
@@ -29,16 +34,24 @@ public class Main extends Application {
 		primaryStage.setTitle("Snake Game");
 		Globals.window = primaryStage;
 		Pane menuScene = new Pane();
+		primaryStage.initStyle(StageStyle.UNIFIED);
+		primaryStage.setFullScreen(true); //maxsize
+		primaryStage.setMaximized(true);
 
 
 		// start button
 		Button startButton = new Button("START GAME");
-		primaryStage.initStyle(StageStyle.UNIFIED);
-		primaryStage.setFullScreen(true); //maxsize
-		startButton.setLayoutX(200);
-		startButton.setLayoutY(500);
+		startButton.setLayoutX(Globals.WINDOW_WIDTH*0.05);
+		startButton.setLayoutY(Globals.WINDOW_HEIGHT-180);
 		startButton.setScaleX(0.8);
 		startButton.setScaleY(0.8);
+
+		// info button
+		Button infoButton = new Button("Information");
+		infoButton.setLayoutX(Globals.WINDOW_WIDTH*0.05);
+		infoButton.setLayoutY(Globals.WINDOW_HEIGHT-100);
+		infoButton.setScaleX(0.8);
+		infoButton.setScaleY(0.8);
 
 		// new text shadow
 		DropShadow shadow = new DropShadow();
@@ -47,7 +60,7 @@ public class Main extends Application {
 
 		// new text keybindings
 		javafx.scene.text.Text keybindings = new Text();
-		keybindings.setText("Press 'P' to Pause the game or 'R' to Restart");
+		keybindings.setText("Snake by The A(tesz) team");
 		keybindings.setEffect(shadow);
 		keybindings.setCache(true);
 		keybindings.setX(350);
@@ -64,26 +77,37 @@ public class Main extends Application {
 					gameScene.getStylesheets().add("css/snake.css");
 					primaryStage.setScene(gameScene);
 					Globals.window = primaryStage;
+					SnakeHead.setScore(0);
+					if (Globals.isMusicOn){
 					MediaPlayer mediaPlayer = new MediaPlayer(Globals.sound);
 					mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); //music plays until game ends
 					mediaPlayer.play();
+					}
+					Globals.window.setFullScreen(true);
 					game.start();
 				}
 		);
+		// info button click handler
+		infoButton.setOnAction(e -> {
+			showInfoScreen();
+		}
+		);
 
 		// adding button and texts to start screen
-		menuScene.getChildren().addAll(startButton, keybindings);
+		menuScene.getChildren().addAll(startButton, keybindings, infoButton);
 		menuScene.getStylesheets().add("css/menu.css");
 
 		// crating & show scene
 		Globals.startScene = new Scene(menuScene, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
 		primaryStage.setScene(Globals.startScene);
+		Globals.window.setFullScreen(true);
 		primaryStage.show();
 	}
   
 	public static void showGameOver(){
 		Pane gameOverScene = new Pane();
 		Globals.endScene = new Scene(gameOverScene, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
+
 		// menu button
 		Button menuButton = new Button("Back to Main menu");
 		menuButton.setLayoutX(450);
@@ -92,6 +116,7 @@ public class Main extends Application {
 		menuButton.setScaleY(0.5);
 		menuButton.setOnAction(e -> {
 			Globals.window.setScene(Globals.startScene);
+			Globals.window.setFullScreen(true);
 			Globals.window.show();
 		});
 		//shadow for text
@@ -120,6 +145,64 @@ public class Main extends Application {
 		gameOverScene.getChildren().addAll(menuButton,info,results);
 		gameOverScene.getStylesheets().add("css/gameOver.css");
 		Globals.window.setScene(Globals.endScene);
+		Globals.window.setFullScreen(true);
+		Globals.window.show();
+	}
+	public static void showInfoScreen(){
+		Pane infoScreen = new Pane();
+		Globals.infoScene = new Scene(infoScreen, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
+		// menu button
+		Button menuButton = new Button("Back to Main menu");
+		menuButton.setLayoutX(450);
+		menuButton.setLayoutY(500);
+		menuButton.setScaleX(0.5);
+		menuButton.setScaleY(0.5);
+		menuButton.setOnAction(e -> {
+			Globals.window.setScene(Globals.startScene);
+			Globals.window.setFullScreen(true);
+			Globals.window.show();
+		});
+		// music button
+		Button musicButton = new Button();
+		if(Globals.isMusicOn) {
+			musicButton.setText("Music On");
+		}else if(!Globals.isMusicOn){
+			musicButton.setText("Music Off");
+		}
+		musicButton.setLayoutX(400);
+		musicButton.setLayoutY(600);
+		musicButton.setAlignment(Pos.CENTER_LEFT);
+		musicButton.setScaleX(0.4);
+		musicButton.setScaleY(0.4);
+		musicButton.setId("musicBTN");
+		musicButton.setOnAction((ActionEvent e) -> {
+			if(Globals.isMusicOn) {
+				Globals.isMusicOn = false;
+				musicButton.setText("Music OFF");
+			}else if(!Globals.isMusicOn){
+				Globals.isMusicOn=true;
+				musicButton.setText("Music On");
+			}
+		});
+		//shadow for text
+		DropShadow shadow = new DropShadow();
+		shadow.setOffsetY(3.0f);
+		shadow.setColor(Color.color(0.4f, 0.4f, 0.4f));
+		//info message
+		javafx.scene.text.Text info = new Text();
+		info.setText("Controls: Use left or right arrows to turn \n\nEnemies: Simple,Vary,SnakeTracker \n\nCredits: Gina, Tamás, Barna, Márk\n\n");
+		info.setEffect(shadow);
+		info.setCache(true);
+		info.setX(250);
+		info.setY(100);
+		info.setFill(Color.BLACK);
+		info.setFont(Font.font(null, FontWeight.BOLD, 32));
+
+		//add buttons and style to scene
+		infoScreen.getChildren().addAll(menuButton,info,musicButton);
+		infoScreen.getStylesheets().add("css/info.css");
+		Globals.window.setScene(Globals.infoScene);
+		Globals.window.setFullScreen(true);
 		Globals.window.show();
 	}
 
