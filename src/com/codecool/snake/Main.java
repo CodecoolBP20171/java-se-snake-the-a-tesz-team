@@ -7,6 +7,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.MediaPlayer;
@@ -44,14 +46,14 @@ public class Main extends Application {
 		// start button
 		Button startButton = new Button("START GAME");
 		startButton.setLayoutX(Globals.WINDOW_WIDTH*0.05);
-		startButton.setLayoutY(Globals.WINDOW_HEIGHT-180);
+		startButton.setLayoutY(Globals.WINDOW_HEIGHT-250);
 		startButton.setScaleX(0.8);
 		startButton.setScaleY(0.8);
 
 		//exit button
 		Button exitButton = new Button("Exit Game");
 		exitButton.setLayoutX(Globals.WINDOW_WIDTH*0.05);
-		exitButton.setLayoutY(Globals.WINDOW_HEIGHT-20);
+		exitButton.setLayoutY(Globals.WINDOW_HEIGHT-120);
 		exitButton.setScaleX(0.8);
 		exitButton.setScaleY(0.8);
 		exitButton.setOnAction(e -> {
@@ -63,7 +65,7 @@ public class Main extends Application {
 		// info button
 		Button infoButton = new Button("Information");
 		infoButton.setLayoutX(Globals.WINDOW_WIDTH*0.05);
-		infoButton.setLayoutY(Globals.WINDOW_HEIGHT-100);
+		infoButton.setLayoutY(Globals.WINDOW_HEIGHT-185);
 		infoButton.setScaleX(0.8);
 		infoButton.setScaleY(0.8);
 
@@ -167,8 +169,8 @@ public class Main extends Application {
 		Globals.infoScene = new Scene(infoScreen, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
 		// menu button
 		Button menuButton = new Button("Back to Main menu");
-		menuButton.setLayoutX(450);
-		menuButton.setLayoutY(500);
+		menuButton.setLayoutX(Globals.WINDOW_WIDTH*0.33);
+		menuButton.setLayoutY(Globals.WINDOW_HEIGHT*0.88);
 		menuButton.setScaleX(0.5);
 		menuButton.setScaleY(0.5);
 		menuButton.setOnAction(e -> {
@@ -183,8 +185,8 @@ public class Main extends Application {
 		}else if(!Globals.isMusicOn){
 			musicButton.setText("Music Off");
 		}
-		musicButton.setLayoutX(400);
-		musicButton.setLayoutY(600);
+		musicButton.setLayoutX(Globals.WINDOW_WIDTH*0.39);
+		musicButton.setLayoutY(Globals.WINDOW_HEIGHT*0.95);
 		musicButton.setAlignment(Pos.CENTER_LEFT);
 		musicButton.setScaleX(0.4);
 		musicButton.setScaleY(0.4);
@@ -210,10 +212,23 @@ public class Main extends Application {
 		info.setX(250);
 		info.setY(100);
 		info.setFill(Color.BLACK);
-		info.setFont(Font.font(null, FontWeight.BOLD, 32));
+		info.setFont(Font.font(null, FontWeight.BOLD, 24));
+
+		//images
+		ImageView enemies = new ImageView(new Image("enemies.png"));
+		enemies.setFitWidth(enemies.getImage().getWidth());
+		enemies.setFitHeight(enemies.getImage().getHeight());
+		enemies.setX(Globals.WINDOW_WIDTH*0.040);
+		enemies.setY(Globals.WINDOW_HEIGHT-300);
+
+		ImageView powerups = new ImageView(new Image("powerups.png"));
+		powerups.setFitWidth(powerups.getImage().getWidth());
+		powerups.setFitHeight(powerups.getImage().getHeight());
+		powerups.setX(Globals.WINDOW_WIDTH*0.6);
+		powerups.setY(Globals.WINDOW_HEIGHT-500);
 
 		//add buttons and style to scene
-		infoScreen.getChildren().addAll(menuButton,info,musicButton);
+		infoScreen.getChildren().addAll(menuButton,info,musicButton,enemies,powerups);
 		infoScreen.getStylesheets().add("css/info.css");
 		Globals.window.setScene(Globals.infoScene);
 		Globals.window.setFullScreen(true);
