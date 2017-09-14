@@ -16,11 +16,11 @@ import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
+    public static void main(String[] args) {
+        launch(args);
+    }
 
-
-	public static void main(String[] args) {
-		launch(args);
-	}
+    public static Stage window;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -80,6 +80,7 @@ public class Main extends Application {
 		primaryStage.setScene(Globals.startScene);
 		primaryStage.show();
 	}
+  
 	public static void showGameOver(){
 		Pane gameOverScene = new Pane();
 		Globals.endScene = new Scene(gameOverScene, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);

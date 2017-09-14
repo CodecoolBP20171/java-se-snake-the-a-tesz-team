@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 
 public class Laser extends GameEntity implements Animatable {
 
+    private float ammo = 5;
     private Point2D heading;
     private double direction;
 
@@ -24,6 +25,7 @@ public class Laser extends GameEntity implements Animatable {
         setRotate(direction);
         pane.getChildren().add(this);
     }
+
 
     @Override
     public void step() {

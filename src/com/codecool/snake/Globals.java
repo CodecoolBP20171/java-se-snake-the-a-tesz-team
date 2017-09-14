@@ -28,16 +28,18 @@ public class Globals {
 
     //images
     public static Image snakeHead = new Image("snake_head.png");
-    public static Image unhealthyHead = new Image("unhealthy_head.png");
+    public static Image unhealthyHead = new Image("kingcry.gif");
     public static Image almostDestroyedHead = new Image("almost_destroyed.png");
     public static Image snakeBody = new Image("snake_body.png");
-    public static Image simpleEnemy = new Image("simple_enemy.png");
-    public static Image snakeTracker = new Image("snake_tracker.png");
-    public static Image vary = new Image("vary.png");
+    public static Image simpleEnemy = new Image("simple_enemy.gif");
+    public static Image snakeTracker = new Image("snake_tracker.gif");
+    public static Image vary = new Image("vary.gif");
+
     public static Image slow = new Image("slow.png");
     public static Image turn = new Image("turn.png");
     public static Image fast = new Image("fast.png");
-    public static Image powerupBerry = new Image("powerup_egg.png");
+    public static Image powerupEgg = new Image("powerup_egg.png");
+
     public static Image redLaser = new Image("red_laser.png");
 
     //sound
@@ -46,6 +48,7 @@ public class Globals {
 
     //counter
     public static Label healthCounter = new Label();
+    public static Label ammoCounter = new Label();
 
     
     public static boolean leftKeyDown;
