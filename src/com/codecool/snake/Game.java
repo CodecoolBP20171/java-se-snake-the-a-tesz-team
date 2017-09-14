@@ -9,6 +9,7 @@ import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -78,7 +79,7 @@ public class Game extends Pane {
 
     public static int randomizePowerUp() {
         Random powerUpRandomizer = new Random();
-        return powerUpRandomizer.nextInt(6 - 1 + 1) + 1;
+        return powerUpRandomizer.nextInt(5 - 1 + 1) + 1;
     }
 
     public static boolean isAbleToSpawnEnemy() {
@@ -129,8 +130,12 @@ public class Game extends Pane {
                     restart();
                     break;
                 case SHIFT:
-                    Globals.isNitro = true;
-                    break;
+                    if (Globals.numOfNitros > 0) {
+                        Globals.isNitro = true;
+                        break;
+                    } else {
+                        break;
+                    }
                 case Q:
                     Globals.window.close();
                     break;

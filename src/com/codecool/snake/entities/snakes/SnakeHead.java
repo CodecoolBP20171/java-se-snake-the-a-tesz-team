@@ -102,20 +102,17 @@ public class SnakeHead extends GameEntity implements Animatable {
         if (Game.getAbleToSpawnPowerup() && Game.numOfPowerUps <= 5) {
             switch (Game.randomizePowerUp()) {
                 case 1:
-                    new SimplePowerup(Game.thisGame);
-                    break;
-                case 2:
                     new SlowMotionPowerUp(Game.thisGame);
                     break;
-                case 3:
+                case 2:
                     new SpeedingPowerUp(Game.thisGame);
                     break;
-                case 4:
+                case 3:
                     new TurnRatePowerUp(Game.thisGame);
                     break;
-                case 5:
+                case 4:
                     new NitroPowerUp(Game.thisGame);
-                case 6:
+                case 5:
                     new HealthPowerUp(Game.thisGame);
                     break;
             }

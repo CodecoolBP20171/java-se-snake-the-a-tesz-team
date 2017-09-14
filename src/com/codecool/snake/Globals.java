@@ -27,7 +27,7 @@ public class Globals {
     public static boolean paused;
     public static boolean gameOver;
     public static boolean isNitro = false;
-    public static int numOfNitros = 2;
+    public static int numOfNitros = 0;
 
     //images
     public static Image snakeHead = new Image("snake_head.png");
