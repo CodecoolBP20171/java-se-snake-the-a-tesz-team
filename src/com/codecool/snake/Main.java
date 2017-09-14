@@ -7,6 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -34,6 +35,7 @@ public class Main extends Application {
 		primaryStage.setTitle("Snake Game");
 		Globals.window = primaryStage;
 		Pane menuScene = new Pane();
+		primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
 		primaryStage.initStyle(StageStyle.UNIFIED);
 		primaryStage.setFullScreen(true); //maxsize
 		primaryStage.setMaximized(true);
@@ -45,6 +47,18 @@ public class Main extends Application {
 		startButton.setLayoutY(Globals.WINDOW_HEIGHT-180);
 		startButton.setScaleX(0.8);
 		startButton.setScaleY(0.8);
+
+		//exit button
+		Button exitButton = new Button("Exit Game");
+		exitButton.setLayoutX(Globals.WINDOW_WIDTH*0.05);
+		exitButton.setLayoutY(Globals.WINDOW_HEIGHT-20);
+		exitButton.setScaleX(0.8);
+		exitButton.setScaleY(0.8);
+		exitButton.setOnAction(e -> {
+			primaryStage.close();
+				}
+		);
+
 
 		// info button
 		Button infoButton = new Button("Information");
@@ -94,7 +108,7 @@ public class Main extends Application {
 		);
 
 		// adding button and texts to start screen
-		menuScene.getChildren().addAll(startButton, keybindings, infoButton);
+		menuScene.getChildren().addAll(startButton, keybindings, infoButton, exitButton);
 		menuScene.getStylesheets().add("css/menu.css");
 
 		// crating & show scene
