@@ -72,14 +72,14 @@ public class Main extends Application {
 		// start button click handler
 		startButton.setOnAction(e -> {
 					Game game = new Game();
-					game.getChildren().add(Globals.healthCounter);
+					Globals.ammoCounter.setTranslateY(40);
+					game.getChildren().addAll(Globals.healthCounter, Globals.ammoCounter);
 					Scene gameScene = new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
 					gameScene.getStylesheets().add("css/snake.css");
 					primaryStage.setScene(gameScene);
 					Globals.window = primaryStage;
 					SnakeHead.setScore(0);
 					if (Globals.isMusicOn){
-					MediaPlayer mediaPlayer = new MediaPlayer(Globals.sound);
 					mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); //music plays until game ends
 					mediaPlayer.play();
 					}
