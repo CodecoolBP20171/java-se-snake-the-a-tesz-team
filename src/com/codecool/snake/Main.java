@@ -185,9 +185,8 @@ public class Main extends Application {
 		}else if(!Globals.isMusicOn){
 			musicButton.setText("Music Off");
 		}
-		musicButton.setLayoutX(Globals.WINDOW_WIDTH*0.39);
+		musicButton.setLayoutX(Globals.WINDOW_WIDTH*0.36);
 		musicButton.setLayoutY(Globals.WINDOW_HEIGHT*0.95);
-		musicButton.setAlignment(Pos.CENTER_LEFT);
 		musicButton.setScaleX(0.4);
 		musicButton.setScaleY(0.4);
 		musicButton.setId("musicBTN");
@@ -215,13 +214,13 @@ public class Main extends Application {
 		info.setFont(Font.font(null, FontWeight.BOLD, 24));
 
 		//images
-		ImageView enemies = new ImageView(new Image("enemies.png"));
+		ImageView enemies = new ImageView(new Image("enemies2.png"));
 		enemies.setFitWidth(enemies.getImage().getWidth());
 		enemies.setFitHeight(enemies.getImage().getHeight());
 		enemies.setX(Globals.WINDOW_WIDTH*0.040);
 		enemies.setY(Globals.WINDOW_HEIGHT-300);
 
-		ImageView powerups = new ImageView(new Image("powerups.png"));
+		ImageView powerups = new ImageView(new Image("powerups2.png"));
 		powerups.setFitWidth(powerups.getImage().getWidth());
 		powerups.setFitHeight(powerups.getImage().getHeight());
 		powerups.setX(Globals.WINDOW_WIDTH*0.6);
