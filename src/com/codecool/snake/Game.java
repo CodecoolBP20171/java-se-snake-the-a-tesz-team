@@ -162,6 +162,10 @@ public class Game extends Pane {
         for (GameEntity gameEntity : Globals.gameObjects) {
             gameEntity.destroy();
         }
+        Globals.rightKeyDown = false;
+        Globals.leftKeyDown = false;
+        Main.mediaPlayer.stop();
+        Main.mediaPlayer.play();
         newGame();
     }
 
